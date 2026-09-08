@@ -38,7 +38,7 @@ function Site({ config, live }: { config: SiteConfig; live: boolean }) {
             id="LOGO-01"
             description="wordmark lockup"
             dimensions="512x128, 4:1, SVG"
-            className="h-16 w-full max-w-xs"
+            className="w-full max-w-xs"
           />
           <div className="flex flex-col gap-3">
             <h1 className="flex flex-col gap-1">
@@ -90,7 +90,7 @@ function Site({ config, live }: { config: SiteConfig; live: boolean }) {
             id="CHAIRMAN-CUTOUT-01"
             description="footer character cutout"
             dimensions="800x1000, 4:5, transparent PNG"
-            className="h-40 w-full max-w-[16rem]"
+            className="min-h-40 w-full max-w-[16rem]"
           />
           <Disclosures items={config.disclosures} />
           <p className="font-mono text-[11px] text-ivory-dim/70">mewyork.xyz</p>
