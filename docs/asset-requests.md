@@ -21,7 +21,7 @@ slot is for and what the layout needs geometrically.
 
 | ID | What is needed |
 | --- | --- |
-| `BRAND-TOKENS-01` | Exact hex values for the six named palette colours. The site currently ships provisional values in `src/index.css`: navy `#0a1030`, deep navy `#060a1f`, black `#05050a`, ivory `#f5f1e6`, pink `#ff5fa2`, electric green `#22e07a`, purple `#7b5cd6`. Purple is used only for borders and labels because it does not clear text contrast on navy at body size. |
+| `BRAND-TOKENS-01` | Exact hex values for the six named palette colours. The site currently ships provisional values in `src/index.css`: navy `#0a1030`, deep navy `#060a1f`, black `#05050a`, ivory `#f5f1e6`, pink `#ff5fa2`, electric green `#22e07a`, purple `#7b5cd6`. Purple is used for borders only; a lighter `#9c86e0` carries purple label text, because `#7b5cd6` clears 3:1 against navy for UI edges but not 4.5:1 for text. |
 | `BRAND-TYPE-01` | Typefaces. The site uses the system sans and system mono until a licensed pair is chosen. Self-host the files; no third-party font CDN is in the CSP-free static build. |
 | `COPY-FAQ-01` | Final wording for the four FAQ answers and the four disclosure lines in `src/site.config.ts`. They are written plainly and factually as placeholders; brand voice is Astra's call, but the factual content must not change. |
 

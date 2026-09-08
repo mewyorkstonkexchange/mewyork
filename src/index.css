@@ -11,6 +11,8 @@
   --color-pink: #ff5fa2;
   --color-green: #22e07a;
   --color-purple: #7b5cd6;
+  /* Purple clears 3:1 against navy for borders but not 4.5:1 for text. */
+  --color-purple-soft: #9c86e0;
 
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;

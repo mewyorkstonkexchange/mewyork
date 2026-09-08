@@ -14,7 +14,7 @@ export function Placeholder({ id, description, dimensions, className }: Placehol
       aria-label={`Development placeholder for ${description}. Awaiting asset ${id}.`}
       className={`flex flex-col items-center justify-center gap-1 rounded-lg border-2 border-dashed border-purple/70 bg-navy-deep/60 p-4 text-center ${className ?? ''}`}
     >
-      <span className="font-mono text-[11px] uppercase tracking-widest text-purple">Placeholder</span>
+      <span className="font-mono text-[11px] uppercase tracking-widest text-purple-soft">Placeholder</span>
       <span className="text-sm text-ivory-dim">
         {description}, awaiting Astra asset <span className="font-mono text-ivory">{id}</span>
       </span>
