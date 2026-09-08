@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* Provisional hex values for the named palette in the brief. Astra confirms the final
+   values; see docs/asset-requests.md (BRAND-TOKENS-01). */
+@theme {
+  --color-navy: #0a1030;
+  --color-navy-deep: #060a1f;
+  --color-ink: #05050a;
+  --color-ivory: #f5f1e6;
+  --color-ivory-dim: #b9b6ad;
+  --color-pink: #ff5fa2;
+  --color-green: #22e07a;
+  --color-purple: #7b5cd6;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-ink);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-green);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
