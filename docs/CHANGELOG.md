@@ -1,5 +1,22 @@
 # Changelog
 
+## 9 September 2026 — the Chairman is revealed
+
+- The hero and the Chairman portrait now serve the revealed Chairman, from the reveal-pack masters
+  under `assets/source/`. Same slots, same layout, same copy; WebP with a palette PNG fallback,
+  each under 400 KB.
+- The portrait caption reads "THE CHAIRMAN". It said "PORTRAIT WITHHELD", which no longer describes
+  what the reader can see.
+- The hero crop moved right at the two narrow breakpoints so the Chairman's head stays whole. The
+  old values framed a composition whose subject sat further left.
+- `og:image` and `twitter:image` now name the Chairman social card. The page had no share image
+  before.
+- The favicon is unchanged: it is the wordmark, so the reveal did not touch it.
+- Removed the design-preview bar and its prelaunch / token-live toggle, from both pages, with the
+  styles that only served it. `live-preview.html` is still there and still works; the public page
+  no longer links to it.
+- The concealed-Chairman art stays in the repository, superseded and no longer loaded.
+
 ## 9 September 2026 — the original prelaunch design is live
 
 - Reverted `index.html`, `style.css` and `config.js` to the original prelaunch design. Same copy, same sections, same order.

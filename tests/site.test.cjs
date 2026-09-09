@@ -1,6 +1,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const source=fs.readFileSync(__dirname+'/../app.js','utf8');
 const html=fs.readFileSync(__dirname+'/../index.html','utf8');
+const css=fs.readFileSync(__dirname+'/../style.css','utf8');
 const X='https://x.com/MewYorkExchange',TG='https://t.me/MewYorkExchange';
 class El{constructor(tag='BUTTON'){this.tagName=tag;this.disabled=false;this.hidden=false;this.textContent='';this.children=[];this.events={};this.dataset={};}addEventListener(k,f){this.events[k]=f;}setAttribute(k,v){this[k]=v;}removeAttribute(k){delete this[k];}replaceChildren(...v){this.children=v;}appendChild(e){this.children.push(e);}showModal(){this.open=true;}close(){this.open=false;}}
 const anchor=key=>Object.assign(new El('A'),{dataset:{link:key}});
@@ -23,11 +24,22 @@ assert.equal((html.match(/class="social-icons"/g)||[]).length,2,'Header and foot
 assert.equal((html.match(new RegExp(X.replace(/\//g,'\\/'),'g'))||[]).length,4,'X is linked from the header, hero, Chairman section and footer.');
 assert.equal((html.match(new RegExp(TG.replace(/\//g,'\\/'),'g'))||[]).length,4,'Telegram is linked from the header, hero, closing section and footer.');
 for(const attr of ['target="_blank"','rel="noopener noreferrer"'])assert(html.includes(attr),`External links must carry ${attr}.`);
-for(const file of ['assets/myse-hero.webp','assets/myse-hero.png','assets/myse-pfp.webp','assets/myse-pfp.png','assets/favicon.svg']){
+for(const file of ['assets/MYSE-Chairman-Web-Hero.webp','assets/MYSE-Chairman-Web-Hero.png','assets/chairman-pfp.webp','assets/chairman-pfp.png','assets/MYSE-Chairman-Social-Card.png','assets/favicon.svg']){
   assert(html.includes(file),`index.html must reference ${file}.`);
   const size=fs.statSync(__dirname+'/../'+file).size;
   assert(size<400*1024,`${file} is ${size} bytes; served art must stay under 400 KB.`);
 }
+
+// The revealed Chairman is the only art the page serves, and the preview bar is gone.
+assert(!/myse-hero|myse-pfp/.test(html),'The concealed-Chairman art must not be served.');
+assert(!html.includes('PORTRAIT WITHHELD'),'The withheld caption cannot stand once the face is shown.');
+assert(html.includes('<span>THE CHAIRMAN</span>'),'The portrait carries the Chairman caption.');
+assert(/alt="The Chairman, a pink cat in a pinstripe suit[^"]*"/.test(html),'The hero alt text describes the revealed Chairman.');
+assert(/alt="The Chairman in his black pinstripe suit\."/.test(html),'The portrait alt text describes the revealed Chairman.');
+assert.equal((html.match(/assets\/MYSE-Chairman-Social-Card\.png/g)||[]).length,2,'The share card is set for og:image and twitter:image.');
+for(const gone of ['review-bar','DESIGN PREVIEW','NOT A TOKEN LAUNCH','live-preview.html'])
+  assert(!html.includes(gone),`The public page must not carry ${gone}.`);
+assert(!css.includes('review-bar'),'The preview-bar styles must go with the bar.');
 
 // Prelaunch: nothing is claimed, the announced links work, the unannounced ones stay inert.
 let h=run();
@@ -100,5 +112,5 @@ h=run({walletConnectProjectId:''});h.q('#wallet-open').onclick();
 const pending=h.q('#providers').children.find(e=>e.textContent==='Mobile wallets: available soon');
 assert(pending&&pending.disabled&&!pending.onclick);
 
-console.log('PASS: original markup without revision sections, announced destinations on header/hero/Chairman/footer links, served art under 400 KB, prelaunch record hidden, live-preview layout, verification and chain gates, address copy and failure, unsafe URLs, wallet ordering with MetaMask first, chain comparison, disconnect, rejection, missing wallet and the WalletConnect project-id gate.');
+console.log('PASS: original markup without revision sections, announced destinations on header/hero/Chairman/footer links, revealed-Chairman art with matching alt text and share card, no preview bar or concealed-Chairman art, served art under 400 KB, prelaunch record hidden, live-preview layout, verification and chain gates, address copy and failure, unsafe URLs, wallet ordering with MetaMask first, chain comparison, disconnect, rejection, missing wallet and the WalletConnect project-id gate.');
 })();

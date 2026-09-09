@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "updated": "2026-09-09",
-  "note": "The site serves the original prelaunch design. The files index.html loads are the PRELAUNCH-* entries: the delivered hero, portrait and favicon, re-encoded by deterministic resize from the masters under assets/source/ with no repainting and no new artwork. The Chairman entries below remain in the repository for social use and are not loaded by the page. The reply bank under assets/source/reply-bank/ is for X replies only.",
+  "note": "The site serves the revealed Chairman. index.html loads HERO-01 in the hero slot, CHAIRMAN-PORTRAIT-01 in the Chairman section, SHARE-01 as the link-preview image and PRELAUNCH-FAVICON-01 as the browser-tab mark. The concealed-Chairman entries PRELAUNCH-HERO-01 and PRELAUNCH-PORTRAIT-01 remain in the repository as the superseded prelaunch art and are no longer loaded by any page. Every served file is a deterministic resize of a master under assets/source/ with no repainting and no new artwork. The reply bank under assets/source/reply-bank/ is for X replies only.",
   "fields": {
     "id": "Stable asset id referenced by code and by this manifest.",
     "version": "Integer, incremented on every re-delivery of the same id.",
@@ -56,10 +56,10 @@
         "bottom half on narrow viewports"
       ],
       "allowedUse": [
-        "website hero"
+        "superseded, not served"
       ],
       "approvalStatus": "approved-by-founder",
-      "referenceNotes": "Original prelaunch delivery, kept by the founder over the later revision. Re-encoded from the master at 1440x960: WebP for browsers that accept it, palette PNG fallback for those that do not. No repainting."
+      "referenceNotes": "Original prelaunch delivery, kept by the founder over the later revision. Re-encoded from the master at 1440x960: WebP for browsers that accept it, palette PNG fallback for those that do not. No repainting. Superseded by HERO-01 when the Chairman was revealed; kept for the record, not loaded."
     },
     {
       "id": "PRELAUNCH-PORTRAIT-01",
@@ -92,10 +92,10 @@
         "square"
       ],
       "allowedUse": [
-        "website Chairman section"
+        "superseded, not served"
       ],
       "approvalStatus": "approved-by-founder",
-      "referenceNotes": "Downscale of the delivered portrait master to twice the width the Chairman section displays."
+      "referenceNotes": "Downscale of the delivered portrait master to twice the width the Chairman section displays. Superseded by CHAIRMAN-PORTRAIT-01 when the Chairman was revealed; kept for the record, not loaded."
     },
     {
       "id": "PRELAUNCH-FAVICON-01",
@@ -124,7 +124,7 @@
         "favicon"
       ],
       "approvalStatus": "approved-by-founder",
-      "referenceNotes": "Delivered vector mark from the original prelaunch package. Served as delivered."
+      "referenceNotes": "Delivered vector wordmark. Served as delivered; it carries no concealed-Chairman art, so the reveal left it unchanged."
     },
     {
       "id": "PRELAUNCH-HERO-MASTER",
@@ -246,28 +246,27 @@
         "left 900x900 flat copy space"
       ],
       "allowedUse": [
-        "website hero",
-        "website Chairman section"
+        "website hero"
       ],
       "approvalStatus": "approved-by-founder",
-      "referenceNotes": "Re-encoded from the master at the delivered 1600x900: WebP for browsers that accept it, palette PNG fallback for those that do not."
+      "referenceNotes": "Re-encoded from the master at the delivered 1600x900: WebP for browsers that accept it, palette PNG fallback for those that do not. Served in the hero slot, which crops it with object-fit cover, so the Chairman stays in frame at every width."
     },
     {
       "id": "CHAIRMAN-PORTRAIT-01",
-      "version": 1,
+      "version": 2,
       "path": "assets/chairman-pfp.webp",
       "fallback": {
         "path": "assets/chairman-pfp.png",
         "format": "png",
         "dimensions": {
-          "width": 512,
-          "height": 512
+          "width": 840,
+          "height": 840
         }
       },
       "source": "assets/source/MYSE-Chairman-PFP-Master.png",
       "dimensions": {
-        "width": 512,
-        "height": 512
+        "width": 840,
+        "height": 840
       },
       "aspectRatio": "1:1",
       "format": "webp",
@@ -286,7 +285,7 @@
         "website Chairman section"
       ],
       "approvalStatus": "approved-by-founder",
-      "referenceNotes": "Downscale of the portrait master to the size the Chairman section displays. The delivered design uses one hero image at every width, so the narrow-viewport hero crop was dropped."
+      "referenceNotes": "Downscale of the 1024x1024 portrait master to 840x840, twice the 420px the Chairman section displays. WebP for browsers that accept it, palette PNG fallback for those that do not."
     },
     {
       "id": "SHARE-01",
@@ -316,7 +315,7 @@
         "twitter:image"
       ],
       "approvalStatus": "approved-by-founder",
-      "referenceNotes": "PNG is the only encoding: link-preview crawlers do not all accept WebP. Palette re-encode of the master at the delivered 1200x630."
+      "referenceNotes": "PNG is the only encoding: link-preview crawlers do not all accept WebP. Palette re-encode of the master at the delivered 1200x630. Served as og:image and twitter:image."
     },
     {
       "id": "FAVICON-01",
@@ -374,42 +373,6 @@
       ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Downscale of the portrait master for iOS home-screen bookmarks."
-    },
-    {
-      "id": "CHAIRMAN-PORTRAIT-01",
-      "version": 1,
-      "path": "assets/chairman-pfp.webp",
-      "fallback": {
-        "path": "assets/chairman-pfp.png",
-        "format": "png",
-        "dimensions": {
-          "width": 512,
-          "height": 512
-        }
-      },
-      "source": "assets/source/MYSE-Chairman-PFP-Master.png",
-      "dimensions": {
-        "width": 512,
-        "height": 512
-      },
-      "aspectRatio": "1:1",
-      "format": "webp",
-      "characterVariant": "chairman",
-      "emotion": "unimpressed",
-      "tags": [
-        "chairman",
-        "portrait",
-        "section"
-      ],
-      "altText": "The Chairman in his black pinstripe suit.",
-      "safeCrops": [
-        "circular avatar crop"
-      ],
-      "allowedUse": [
-        "website Chairman section"
-      ],
-      "approvalStatus": "approved-by-founder",
-      "referenceNotes": "Downscale of the portrait master to the size the Chairman section displays. The delivered design uses one hero image at every width, so the narrow-viewport hero crop was dropped."
     },
     {
       "id": "CHAIRMAN-WEB-HERO-MASTER",
