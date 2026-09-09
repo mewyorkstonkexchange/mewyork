@@ -9,7 +9,7 @@ window.MYSE_CONFIG = {
   poolAddress: '',
   xHandle: '@MewYorkExchange',
   siteURL: 'https://mewyork.xyz', // Canonical HTTPS origin. Also emits absolute social-card metadata.
-  walletConnectProjectId: '', // WalletConnect Cloud project id. Empty keeps the modal's mobile option disabled and loads no WalletConnect code.
+  walletConnectProjectId: '2460adfcc9ff3cbf205d4a7bbd1bf51f', // Public WalletConnect Cloud project id. Empty keeps the modal's mobile option disabled and loads no WalletConnect code.
   links: {
     x: 'https://x.com/MewYorkExchange',
     telegram: 'https://t.me/MewYorkExchange',

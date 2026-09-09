@@ -9,5 +9,5 @@ for(const label of ['MetaMask','MetaMask: not detected','Coinbase Wallet','Walle
 assert(source.includes('https://metamask.io/download/'),'The undetected MetaMask option must link to metamask.io.');
 assert(/cdn\.jsdelivr\.net\/npm\/@walletconnect\/ethereum-provider@\d+\.\d+\.\d+\//.test(source),'The WalletConnect module URL must be version-pinned.');
 assert(/projectId\(\)\?option\('WalletConnect \(mobile\)'/.test(source),'WalletConnect must stay disabled until a project id is configured.');
-assert(/walletConnectProjectId:\s*''/.test(config),'config.js must ship an empty walletConnectProjectId.');
+assert(/walletConnectProjectId:\s*'[0-9a-zA-Z_-]*'/.test(config),'config.js must declare walletConnectProjectId as a plain public string.');
 console.log('PASS: read-only method allowlist, no signing or transaction calls, MetaMask first with a fallback link, Coinbase and mobile options, pinned WalletConnect module, project-id gate.');
