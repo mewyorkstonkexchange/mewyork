@@ -1,16 +1,43 @@
 # Engineering handoff
 
-Open MYSE_Prelaunch_Design.html for the updated self-contained design. Open MYSE_Token_Live_Design.html for the separate, explicitly labeled launch-layout preview. Use website/ as the editable source. No build dependency is required.
+The site is the original prelaunch design: `index.html` and `live-preview.html` at the repository
+root, with `style.css`, `app.js` and `config.js` beside them. No build step, no dependencies. The
+two `MYSE_*_Design.html` files in this folder are the superseded revision's self-contained previews,
+kept as a record; they are not what the site serves.
 
-All owner-editable public data is in website/config.js: contract, poolAddress, networkName, chainId, utilityMarketCapUSD, xHandle, siteURL and social/explorer/trade links. Both routes use the same config. The markup contains initial values generated from that config for first paint; app.js updates the visible values and hrefs when config changes. Set the canonical HTTPS siteURL and stamp absolute og:image/twitter:image URLs into both HTML heads during the production build; client-side metadata updates alone are insufficient for many social crawlers. The approved social-card file is included. Local previews embed it for portability.
+All owner-editable public data is in `config.js`: launch status, verification flag, contract, chain
+id, the record fields, the community and trading links, and the WalletConnect project id. Both
+routes read the same config. `docs/launch-switch.md` is the order of operations at launch.
 
-Initially launchStatus is prelaunch, verified is false, and all token/pool/explorer/trade values are empty. Copy buttons remain disabled. A nonzero 40-hex-digit address plus verified=true enables its corresponding copy action. Pool and token addresses cannot be identical. The full configured address is copied. Explorer/trade links require the verified token plus HTTPS URLs without embedded credentials. Changing launchStatus to live additionally requires a valid chain ID and trade URL before live copy appears. The live preview does not manufacture populated sample addresses.
+Initially `launchStatus` is `prelaunch` and `verified` is false, so the record section is hidden and
+the page states no address. `live-preview.html` renders the token-live layout at any time without
+claiming a launch. Going live requires all of: `launchStatus: 'live'`, `verified: true`, a nonzero
+40-hex-digit `contract`, a valid `chainId` and an HTTPS `links.trade`. Explorer, trade and chart
+controls stay disabled until then. Links are rejected unless they are HTTPS without embedded
+credentials, so a bad value renders inert rather than dangerous.
 
-The $5M milestone and utility/evolution statements are owner-supplied product copy, not verified implementation or a market-cap feed. No automatic unlock mechanism is implemented. Future engineering must define the milestone measurement and fulfillment separately. Until then, the site shows the requested announcement only.
+The header and footer icon links and the hero, Chairman and closing buttons take their destinations
+from `config.js`; the markup carries the same URLs so they work without JavaScript.
 
-Wallet modal and injected-wallet session behavior are retained. Numeric chainId 4663 is converted to hexadecimal 0x1237 for comparison. Connection requests only eth_requestAccounts and eth_chainId. No approvals, signatures or transactions. Mobile provider integration and real-wallet/browser testing remain outstanding. These files are not a deployment to the existing public site.
+Wallet: a session only. The modal lists MetaMask first, then any other EIP-6963 injected wallet,
+then Coinbase Wallet, then WalletConnect for phones when a project id is configured. When MetaMask
+is absent the option is shown disabled beside an install link, so nothing pretends to be available.
+Connecting requests `eth_requestAccounts` and `eth_chainId` and nothing else: no approvals, no
+signatures, no transactions. Numeric `chainId` 4663 is compared as `0x1237` and a wallet on another
+network is told so. Disconnect removes the listeners and clears the session; nothing is persisted.
+
+Artwork: the delivered masters live under `assets/source/` and are not served. The files the page
+loads are deterministic resizes and re-encodes of those masters, WebP with a palette PNG fallback,
+each under 400 KB. `assets/manifest.json` records every id, source, size and alt text.
 
 Verified chain source, checked 9 September 2026: https://docs.robinhood.com/chain/connecting/
 The X and Telegram destinations were supplied by the owner; no account changes or messages were sent.
 
-Validation: JavaScript syntax; exact section order; four FAQ entries; local assets; copy-address handling and failure states; verification gates; distinct token/pool values; unsafe URLs; config-driven milestone; wallet network comparison, rejection, missing wallet and disconnect cleanup. Run node tests/revision.test.cjs from the extracted package. No browser visual QA is claimed.
+Validation: `node tests/site.test.cjs` covers the delivered markup, the announced destinations, the
+served art budget, the prelaunch and live-preview states, the verification and chain gates, address
+copying and its failure path, unsafe URLs, and the wallet's ordering, chain comparison, rejection,
+missing-wallet and project-id paths. `node tests/wallet.test.cjs` is a source-level check that the
+wallet code names no method outside the read-only allowlist and contains no signing or transaction
+call. Browser QA was run headless at 1280 and 390 CSS pixels: no horizontal overflow at either
+width, icons present in the header and footer, hero buttons pointing at the announced destinations,
+and the modal opening with MetaMask first.
