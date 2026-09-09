@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node tests/revision.test.cjs
+      - run: node tests/site.test.cjs
       - run: node tests/wallet.test.cjs
       - uses: actions/configure-pages@v5
         with:

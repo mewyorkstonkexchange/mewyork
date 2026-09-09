@@ -3,28 +3,37 @@
   const c = window.MYSE_CONFIG || {};
   const q = s => document.querySelector(s);
   const validURL = v => {try {const u=new URL(v);return u.protocol==='https:'&&!u.username&&!u.password;}catch{return false;}};
-  const validAddress = v => /^0x[0-9a-fA-F]{40}$/.test(v||'') && !/^0x0{40}$/i.test(v);
-  const chainNumber=Number(c.chainId);
-  const chainHex=Number.isSafeInteger(chainNumber)&&chainNumber>0?'0x'+chainNumber.toString(16):'';
   let timer;
-  const tell=text=>{q('#notice').textContent=text;clearTimeout(timer);timer=setTimeout(()=>q('#notice').textContent='',5500);};
-  const threshold=Number(c.utilityMarketCapUSD);
-  const thresholdText=Number.isFinite(threshold)&&threshold>0?'$'+(threshold>=1000000?(threshold/1000000).toLocaleString('en-US',{maximumFractionDigits:3})+'M':threshold.toLocaleString('en-US')):'an unconfigured';
-  document.querySelectorAll('[data-threshold]').forEach(el=>el.textContent=thresholdText);
-  document.querySelectorAll('[data-x-handle]').forEach(el=>el.textContent=c.xHandle||'the official account');
-  document.querySelectorAll('[data-x-follow]').forEach(el=>el.textContent='Follow '+(c.xHandle||'on X'));
-  q('#network-name').textContent=(c.networkName||'Network not configured')+(chainHex?' (chain id '+chainNumber+')':'');
-  const tokenReady=c.verified===true&&validAddress(c.contract);
-  const poolReady=c.verified===true&&validAddress(c.poolAddress)&&c.poolAddress.toLowerCase()!==(c.contract||'').toLowerCase();
-  for(const [address,id,button,ready,label] of [[c.contract,'#contract-address','#copy-address',tokenReady,'Token contract'],[c.poolAddress,'#pool-address','#copy-pool',poolReady,'Pool address']]){
-    q(id).textContent=ready?address:'Not yet published';q(button).disabled=!ready;
-    q(button).addEventListener('click',async()=>{if(!ready)return;try{await navigator.clipboard.writeText(address);tell(label+' copied.');}catch{tell('Couldn’t copy. Select the full address shown above.');}});
+  const tell = text => {q('#notice').textContent=text;clearTimeout(timer);timer=setTimeout(()=>q('#notice').textContent='',5500);};
+  const addressValid = /^0x[0-9a-fA-F]{40}$/.test(c.contract || '') && !/^0x0{40}$/i.test(c.contract || '');
+  const chainNumber = Number(c.chainId);
+  const chainHex = Number.isSafeInteger(chainNumber)&&chainNumber>0?'0x'+chainNumber.toString(16):'';
+  const liveReady = c.launchStatus==='live' && c.verified===true && addressValid && chainHex!=='' && validURL(c.links?.trade);
+  const preview = location.pathname.endsWith('live-preview.html');
+  const live = liveReady || preview;
+
+  q('#token').hidden=!live;
+  if(preview && !liveReady){q('#launch-status').textContent='Token-live layout · awaiting verified launch configuration';}
+  if(liveReady){
+    q('#launch-status').textContent='Live on Robinhood Chain.';
+    q('.preview-explanation').hidden=true;
+    q('#launch-answer').textContent='The verified contract and official trading destinations are listed above. Always compare the full token address.';
+    q('#contract-address').textContent=c.contract;
+    q('#copy-address').disabled=false;
+    for(const [id,value] of [['token-name',c.tokenName],['token-supply',c.supply],['token-pair',c.pairing],['token-venue',c.venue],['token-fees',c.fees],['founder-disclosure',c.founderDisclosure]]) if(value) q('#'+id).textContent=value;
+    q('#network-name').textContent='Robinhood Chain';
   }
-  for(const key of ['explorer','trade']){const el=q('#'+key+'-record');const url=c.links?.[key];if(tokenReady&&validURL(url)){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=url;el.replaceChildren(a);}else el.textContent='Not yet published';}
-  document.querySelectorAll('[data-link]').forEach(el=>{const url=c.links?.[el.dataset.link];if(validURL(url))el.href=url;else{el.setAttribute('aria-disabled','true');el.addEventListener('click',e=>{e.preventDefault();tell('This official link is not configured.');});}});
-  const liveReady=c.launchStatus==='live'&&tokenReady&&chainHex&&validURL(c.links?.trade);
-  if(liveReady){q('#launch-headline').textContent='Now live. Only on '+c.networkName+'.';q('#launch-answer').textContent='Yes. The token contract published on X, on '+c.xHandle+', is shown on this page. Compare the full address before using it.';}
-  if(validURL(c.siteURL)){const card=new URL('assets/MYSE-Chairman-Social-Card.png',c.siteURL.replace(/\/?$/,'/')).href;document.querySelectorAll('meta[property="og:image"],meta[name="twitter:image"]').forEach(el=>el.setAttribute('content',card));}
+  document.querySelectorAll('[data-link]').forEach(el=>{
+    const key=el.dataset.link;const url=c.links?.[key];const gated=['trade','explorer','chart'].includes(key);
+    if(el.tagName==='A'){
+      if(validURL(url)){el.href=url;el.target='_blank';el.rel='noopener noreferrer';}
+      else{el.removeAttribute('href');el.setAttribute('aria-disabled','true');el.addEventListener('click',e=>{e.preventDefault();tell('This official link has not been announced yet.');});}
+      return;
+    }
+    if(gated&&!liveReady){el.disabled=true;return;}
+    el.addEventListener('click',()=>{if(validURL(url))window.open(url,'_blank','noopener,noreferrer');else tell('This official link has not been announced yet.');});
+  });
+  q('#copy-address').addEventListener('click',async()=>{if(!liveReady)return;try{await navigator.clipboard.writeText(c.contract);tell('Token address copied.');}catch{tell('Couldn’t copy. Select the full address shown above.');}});
   const WALLETCONNECT_MODULE='https://cdn.jsdelivr.net/npm/@walletconnect/ethereum-provider@2.24.0/+esm';
   const providers = new Map();let current=null;let account='';let chain='';
   const onAccounts = accounts => {account=accounts[0]||'';renderWallet();};
