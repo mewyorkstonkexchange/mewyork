@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict'),fs=require('node:fs');
+const source=fs.readFileSync(__dirname+'/../app.js','utf8'),config=fs.readFileSync(__dirname+'/../config.js','utf8');
+const allowed=new Set(['eth_requestAccounts','eth_chainId']);
+const requested=[...source.matchAll(/['"`](eth_[A-Za-z0-9]+|personal_[A-Za-z0-9]+|wallet_[A-Za-z0-9]+)['"`]/g)].map(m=>m[1]);
+assert(requested.length>0,'No wallet RPC method names found in app.js; the connect code moved or was removed.');
+for(const method of requested)assert(allowed.has(method),`app.js names the wallet method ${method}, which is outside the read-only allowlist.`);
+for(const banned of [/signMessage/,/signTypedData/,/sendTransaction/,/signTransaction/,/personalSign/,/requestPermissions/,/sendRawTransaction/,/writeContract/,/\.sign\(/])assert(!banned.test(source),`app.js contains a signing or transaction call matching ${banned}.`);
+for(const label of ['MetaMask','MetaMask: not detected','Coinbase Wallet','WalletConnect (mobile)','Mobile wallets: available soon'])assert(source.includes(label),`The connect modal no longer offers ${label}.`);
+assert(source.includes('https://metamask.io/download/'),'The undetected MetaMask option must link to metamask.io.');
+assert(/cdn\.jsdelivr\.net\/npm\/@walletconnect\/ethereum-provider@\d+\.\d+\.\d+\//.test(source),'The WalletConnect module URL must be version-pinned.');
+assert(/projectId\(\)\?option\('WalletConnect \(mobile\)'/.test(source),'WalletConnect must stay disabled until a project id is configured.');
+assert(/walletConnectProjectId:\s*''/.test(config),'config.js must ship an empty walletConnectProjectId.');
+console.log('PASS: read-only method allowlist, no signing or transaction calls, MetaMask first with a fallback link, Coinbase and mobile options, pinned WalletConnect module, project-id gate.');
