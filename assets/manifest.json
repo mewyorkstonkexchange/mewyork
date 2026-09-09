@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "updated": "2026-09-09",
-  "note": "Final Chairman artwork, delivered by the creative director and signed off by the founder. Masters live under assets/source/ and are not served. The files the page loads live beside them in assets/ and were produced by deterministic resize and re-encode of those masters: no repainting, no new artwork. The reply bank under assets/source/reply-bank/ is composed from one approved portrait and is for X replies only; it is not used on the page.",
+  "note": "The site serves the original prelaunch design. The files index.html loads are the PRELAUNCH-* entries: the delivered hero, portrait and favicon, re-encoded by deterministic resize from the masters under assets/source/ with no repainting and no new artwork. The Chairman entries below remain in the repository for social use and are not loaded by the page. The reply bank under assets/source/reply-bank/ is for X replies only.",
   "fields": {
     "id": "Stable asset id referenced by code and by this manifest.",
     "version": "Integer, incremented on every re-delivery of the same id.",
@@ -22,6 +22,195 @@
     "referenceNotes": "External visual references, recorded for review before commercial publication."
   },
   "entries": [
+    {
+      "id": "PRELAUNCH-HERO-01",
+      "version": 1,
+      "path": "assets/myse-hero.webp",
+      "fallback": {
+        "path": "assets/myse-hero.png",
+        "format": "png",
+        "dimensions": {
+          "width": 1440,
+          "height": 960
+        }
+      },
+      "source": "assets/source/myse-hero.png",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      },
+      "aspectRatio": "3:2",
+      "format": "webp",
+      "characterVariant": "chairman-concealed",
+      "emotion": null,
+      "tags": [
+        "hero",
+        "office",
+        "binder",
+        "bell",
+        "landing"
+      ],
+      "altText": "A concealed Chairman’s office, with a paper bag resting on a pinstripe chair, an open collector binder and a brass opening bell.",
+      "safeCrops": [
+        "right two thirds at any height",
+        "bottom half on narrow viewports"
+      ],
+      "allowedUse": [
+        "website hero"
+      ],
+      "approvalStatus": "approved-by-founder",
+      "referenceNotes": "Original prelaunch delivery, kept by the founder over the later revision. Re-encoded from the master at 1440x960: WebP for browsers that accept it, palette PNG fallback for those that do not. No repainting."
+    },
+    {
+      "id": "PRELAUNCH-PORTRAIT-01",
+      "version": 1,
+      "path": "assets/myse-pfp.webp",
+      "fallback": {
+        "path": "assets/myse-pfp.png",
+        "format": "png",
+        "dimensions": {
+          "width": 840,
+          "height": 840
+        }
+      },
+      "source": "assets/source/myse-pfp.png",
+      "dimensions": {
+        "width": 840,
+        "height": 840
+      },
+      "aspectRatio": "1:1",
+      "format": "webp",
+      "characterVariant": "chairman-concealed",
+      "emotion": null,
+      "tags": [
+        "portrait",
+        "section",
+        "withheld"
+      ],
+      "altText": "A brown paper bag with two eye holes against a dark pinstripe chair; the Chairman’s identity remains concealed.",
+      "safeCrops": [
+        "square"
+      ],
+      "allowedUse": [
+        "website Chairman section"
+      ],
+      "approvalStatus": "approved-by-founder",
+      "referenceNotes": "Downscale of the delivered portrait master to twice the width the Chairman section displays."
+    },
+    {
+      "id": "PRELAUNCH-FAVICON-01",
+      "version": 1,
+      "path": "assets/favicon.svg",
+      "fallback": null,
+      "source": null,
+      "dimensions": {
+        "width": 64,
+        "height": 64
+      },
+      "aspectRatio": "1:1",
+      "format": "svg",
+      "characterVariant": null,
+      "emotion": null,
+      "tags": [
+        "favicon",
+        "browser-tab",
+        "wordmark"
+      ],
+      "altText": "The MYSE wordmark initial in cream on the house navy.",
+      "safeCrops": [
+        "legible at 16x16"
+      ],
+      "allowedUse": [
+        "favicon"
+      ],
+      "approvalStatus": "approved-by-founder",
+      "referenceNotes": "Delivered vector mark from the original prelaunch package. Served as delivered."
+    },
+    {
+      "id": "PRELAUNCH-HERO-MASTER",
+      "version": 1,
+      "path": "assets/source/myse-hero.png",
+      "fallback": null,
+      "source": null,
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "aspectRatio": "3:2",
+      "format": "png",
+      "characterVariant": "chairman-concealed",
+      "emotion": null,
+      "tags": [
+        "hero",
+        "master"
+      ],
+      "altText": "A concealed Chairman’s office, with a paper bag resting on a pinstripe chair, an open collector binder and a brass opening bell.",
+      "safeCrops": [
+        "right two thirds at any height"
+      ],
+      "allowedUse": [
+        "master, not served"
+      ],
+      "approvalStatus": "approved-by-founder",
+      "referenceNotes": "Delivered master for PRELAUNCH-HERO-01."
+    },
+    {
+      "id": "PRELAUNCH-PFP-MASTER",
+      "version": 1,
+      "path": "assets/source/myse-pfp.png",
+      "fallback": null,
+      "source": null,
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "1:1",
+      "format": "png",
+      "characterVariant": "chairman-concealed",
+      "emotion": null,
+      "tags": [
+        "portrait",
+        "master"
+      ],
+      "altText": "A brown paper bag with two eye holes against a dark pinstripe chair; the Chairman’s identity remains concealed.",
+      "safeCrops": [
+        "square"
+      ],
+      "allowedUse": [
+        "master, not served"
+      ],
+      "approvalStatus": "approved-by-founder",
+      "referenceNotes": "Delivered master for PRELAUNCH-PORTRAIT-01."
+    },
+    {
+      "id": "PRELAUNCH-X-BANNER",
+      "version": 1,
+      "path": "assets/source/myse-x-banner.png",
+      "fallback": null,
+      "source": null,
+      "dimensions": {
+        "width": 2172,
+        "height": 724
+      },
+      "aspectRatio": "3:1",
+      "format": "png",
+      "characterVariant": "chairman-concealed",
+      "emotion": null,
+      "tags": [
+        "banner",
+        "x",
+        "profile"
+      ],
+      "altText": "The concealed Chairman’s office as a wide banner, with the MYSE wordmark.",
+      "safeCrops": [
+        "centre 1500x500"
+      ],
+      "allowedUse": [
+        "X profile banner"
+      ],
+      "approvalStatus": "approved-by-founder",
+      "referenceNotes": "Delivered with the original prelaunch package. Not loaded by the page."
+    },
     {
       "id": "HERO-01",
       "version": 2,
