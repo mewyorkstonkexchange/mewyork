@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-09-08",
-  "note": "Final Chairman artwork, delivered by the creative director and signed off by the founder. Masters live under assets/source/ and are not served. Web derivatives live in public/ and were produced by deterministic resize, crop and re-encode of the masters: no repainting, no new artwork. The reply bank under assets/source/reply-bank/ is composed from one approved portrait and is for X replies only; it is not used on the page.",
+  "updated": "2026-09-09",
+  "note": "Final Chairman artwork, delivered by the creative director and signed off by the founder. Masters live under assets/source/ and are not served. The files the page loads live beside them in assets/ and were produced by deterministic resize and re-encode of those masters: no repainting, no new artwork. The reply bank under assets/source/reply-bank/ is composed from one approved portrait and is for X replies only; it is not used on the page.",
   "fields": {
-    "id": "Stable asset id referenced by code and by docs/asset-requests.md.",
+    "id": "Stable asset id referenced by code and by this manifest.",
     "version": "Integer, incremented on every re-delivery of the same id.",
     "path": "Repository-relative path of the primary file.",
     "fallback": "Repository-relative path, format and size of the fallback encoding, when the slot ships two.",
@@ -24,87 +24,203 @@
   "entries": [
     {
       "id": "HERO-01",
-      "version": 1,
-      "path": "public/hero-chairman.webp",
+      "version": 2,
+      "path": "assets/MYSE-Chairman-Web-Hero.webp",
       "fallback": {
-        "path": "public/hero-chairman.png",
+        "path": "assets/MYSE-Chairman-Web-Hero.png",
         "format": "png",
-        "dimensions": { "width": 1280, "height": 720 }
+        "dimensions": {
+          "width": 1600,
+          "height": 900
+        }
       },
       "source": "assets/source/MYSE-Chairman-Web-Hero.png",
-      "dimensions": { "width": 1600, "height": 900 },
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
       "aspectRatio": "16:9",
       "format": "webp",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["hero", "chairman", "office", "desk", "bell", "landing"],
-      "altText": "The Chairman, a pink cat in a black pinstripe suit, resting his cheek on his paw at an exchange desk beside a brass bell.",
-      "safeCrops": ["right 688x900 portrait", "left 900x900 flat copy space"],
-      "allowedUse": ["website hero", "website Chairman section"],
+      "tags": [
+        "hero",
+        "chairman",
+        "office",
+        "desk",
+        "bell",
+        "landing"
+      ],
+      "altText": "The Chairman, a pink cat in a pinstripe suit, sits at his exchange desk beside a brass bell.",
+      "safeCrops": [
+        "right 688x900 portrait",
+        "left 900x900 flat copy space"
+      ],
+      "allowedUse": [
+        "website hero",
+        "website Chairman section"
+      ],
       "approvalStatus": "approved-by-founder",
-      "referenceNotes": null
+      "referenceNotes": "Re-encoded from the master at the delivered 1600x900: WebP for browsers that accept it, palette PNG fallback for those that do not."
     },
     {
-      "id": "HERO-PORTRAIT-01",
+      "id": "CHAIRMAN-PORTRAIT-01",
       "version": 1,
-      "path": "public/chairman-portrait.webp",
+      "path": "assets/chairman-pfp.webp",
       "fallback": {
-        "path": "public/chairman-portrait.png",
+        "path": "assets/chairman-pfp.png",
         "format": "png",
-        "dimensions": { "width": 688, "height": 900 }
+        "dimensions": {
+          "width": 512,
+          "height": 512
+        }
       },
-      "source": "assets/source/MYSE-Chairman-Web-Hero.png",
-      "dimensions": { "width": 688, "height": 900 },
-      "aspectRatio": "0.76:1",
+      "source": "assets/source/MYSE-Chairman-PFP-Master.png",
+      "dimensions": {
+        "width": 512,
+        "height": 512
+      },
+      "aspectRatio": "1:1",
       "format": "webp",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["hero", "mobile", "chairman", "portrait"],
-      "altText": "The Chairman, a pink cat in a black pinstripe suit, resting his cheek on his paw at an exchange desk beside a brass bell.",
-      "safeCrops": ["1:1 head and shoulders"],
-      "allowedUse": ["website hero on narrow viewports"],
+      "tags": [
+        "chairman",
+        "portrait",
+        "section"
+      ],
+      "altText": "The Chairman in his black pinstripe suit.",
+      "safeCrops": [
+        "circular avatar crop"
+      ],
+      "allowedUse": [
+        "website Chairman section"
+      ],
       "approvalStatus": "approved-by-founder",
-      "referenceNotes": "Deterministic crop of the delivered web hero at x=912, so the Chairman is not cropped away on a phone."
+      "referenceNotes": "Downscale of the portrait master to the size the Chairman section displays. The delivered design uses one hero image at every width, so the narrow-viewport hero crop was dropped."
     },
     {
       "id": "SHARE-01",
-      "version": 1,
-      "path": "public/share-chairman.png",
-      "fallback": {
-        "path": "public/share-chairman.webp",
-        "format": "webp",
-        "dimensions": { "width": 1200, "height": 630 }
-      },
+      "version": 2,
+      "path": "assets/MYSE-Chairman-Social-Card.png",
+      "fallback": null,
       "source": "assets/source/MYSE-Chairman-Social-Card.png",
-      "dimensions": { "width": 1200, "height": 630 },
+      "dimensions": {
+        "width": 1200,
+        "height": 630
+      },
       "aspectRatio": "1.91:1",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["og", "twitter-card", "social-preview"],
+      "tags": [
+        "og",
+        "twitter-card",
+        "social-preview"
+      ],
       "altText": "MYSE, Mew York Stock Exchange. The Chairman at his desk.",
-      "safeCrops": ["centre 1200x600 with 60px inset for link-preview cropping"],
-      "allowedUse": ["og:image", "twitter:image"],
+      "safeCrops": [
+        "centre 1200x600 with 60px inset for link-preview cropping"
+      ],
+      "allowedUse": [
+        "og:image",
+        "twitter:image"
+      ],
       "approvalStatus": "approved-by-founder",
-      "referenceNotes": "PNG is the primary because link-preview crawlers do not all accept WebP."
+      "referenceNotes": "PNG is the only encoding: link-preview crawlers do not all accept WebP. Palette re-encode of the master at the delivered 1200x630."
     },
     {
       "id": "FAVICON-01",
-      "version": 1,
-      "path": "public/favicon.svg",
+      "version": 2,
+      "path": "assets/chairman-favicon.png",
       "fallback": null,
-      "source": null,
-      "dimensions": { "width": 64, "height": 64 },
+      "source": "assets/source/MYSE-Chairman-PFP-Master.png",
+      "dimensions": {
+        "width": 64,
+        "height": 64
+      },
       "aspectRatio": "1:1",
-      "format": "svg",
+      "format": "png",
       "characterVariant": null,
       "emotion": null,
-      "tags": ["favicon", "browser-tab"],
-      "altText": "MYSE monogram.",
-      "safeCrops": ["legible at 16x16"],
-      "allowedUse": ["favicon"],
+      "tags": [
+        "favicon",
+        "browser-tab"
+      ],
+      "altText": "The Chairman, head and shoulders, in a black pinstripe suit.",
+      "safeCrops": [
+        "legible at 16x16"
+      ],
+      "allowedUse": [
+        "favicon"
+      ],
       "approvalStatus": "approved-by-founder",
-      "referenceNotes": null
+      "referenceNotes": "Downscale of the portrait master to the size a browser tab uses."
+    },
+    {
+      "id": "APPLE-TOUCH-ICON-01",
+      "version": 1,
+      "path": "assets/apple-touch-icon.png",
+      "fallback": null,
+      "source": "assets/source/MYSE-Chairman-PFP-Master.png",
+      "dimensions": {
+        "width": 180,
+        "height": 180
+      },
+      "aspectRatio": "1:1",
+      "format": "png",
+      "characterVariant": "chairman",
+      "emotion": "unimpressed",
+      "tags": [
+        "icon",
+        "home-screen",
+        "ios"
+      ],
+      "altText": "The Chairman, head and shoulders, in a black pinstripe suit.",
+      "safeCrops": [
+        "legible at 60x60"
+      ],
+      "allowedUse": [
+        "apple-touch-icon"
+      ],
+      "approvalStatus": "approved-by-founder",
+      "referenceNotes": "Downscale of the portrait master for iOS home-screen bookmarks."
+    },
+    {
+      "id": "CHAIRMAN-PORTRAIT-01",
+      "version": 1,
+      "path": "assets/chairman-pfp.webp",
+      "fallback": {
+        "path": "assets/chairman-pfp.png",
+        "format": "png",
+        "dimensions": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "source": "assets/source/MYSE-Chairman-PFP-Master.png",
+      "dimensions": {
+        "width": 512,
+        "height": 512
+      },
+      "aspectRatio": "1:1",
+      "format": "webp",
+      "characterVariant": "chairman",
+      "emotion": "unimpressed",
+      "tags": [
+        "chairman",
+        "portrait",
+        "section"
+      ],
+      "altText": "The Chairman in his black pinstripe suit.",
+      "safeCrops": [
+        "circular avatar crop"
+      ],
+      "allowedUse": [
+        "website Chairman section"
+      ],
+      "approvalStatus": "approved-by-founder",
+      "referenceNotes": "Downscale of the portrait master to the size the Chairman section displays. The delivered design uses one hero image at every width, so the narrow-viewport hero crop was dropped."
     },
     {
       "id": "CHAIRMAN-WEB-HERO-MASTER",
@@ -112,15 +228,26 @@
       "path": "assets/source/MYSE-Chairman-Web-Hero.png",
       "fallback": null,
       "source": null,
-      "dimensions": { "width": 1600, "height": 900 },
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
       "aspectRatio": "16:9",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["master", "hero", "chairman"],
+      "tags": [
+        "master",
+        "hero",
+        "chairman"
+      ],
       "altText": "The Chairman at an exchange desk, with flat copy space on the left.",
-      "safeCrops": ["right 688x900 portrait"],
-      "allowedUse": ["source for website derivatives"],
+      "safeCrops": [
+        "right 688x900 portrait"
+      ],
+      "allowedUse": [
+        "source for website derivatives"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": null
     },
@@ -130,15 +257,26 @@
       "path": "assets/source/MYSE-Chairman-Social-Card.png",
       "fallback": null,
       "source": null,
-      "dimensions": { "width": 1200, "height": 630 },
+      "dimensions": {
+        "width": 1200,
+        "height": 630
+      },
       "aspectRatio": "1.91:1",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["master", "og", "social"],
+      "tags": [
+        "master",
+        "og",
+        "social"
+      ],
       "altText": "MYSE social card showing the Chairman at his desk.",
-      "safeCrops": ["centre 1200x600"],
-      "allowedUse": ["source for the share image"],
+      "safeCrops": [
+        "centre 1200x600"
+      ],
+      "allowedUse": [
+        "source for the share image"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": null
     },
@@ -148,15 +286,26 @@
       "path": "assets/source/MYSE-Chairman-PFP-Master.png",
       "fallback": null,
       "source": null,
-      "dimensions": { "width": 1024, "height": 1024 },
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
       "aspectRatio": "1:1",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["master", "avatar", "pfp"],
+      "tags": [
+        "master",
+        "avatar",
+        "pfp"
+      ],
       "altText": "The Chairman, head and shoulders, in a black pinstripe suit.",
-      "safeCrops": ["circular avatar crop"],
-      "allowedUse": ["source for social avatars"],
+      "safeCrops": [
+        "circular avatar crop"
+      ],
+      "allowedUse": [
+        "source for social avatars"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Upscaled from the approved concept board; not new high-resolution detail."
     },
@@ -166,15 +315,26 @@
       "path": "assets/source/MYSE-Chairman-PFP-X.png",
       "fallback": null,
       "source": "assets/source/MYSE-Chairman-PFP-Master.png",
-      "dimensions": { "width": 400, "height": 400 },
+      "dimensions": {
+        "width": 400,
+        "height": 400
+      },
       "aspectRatio": "1:1",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["avatar", "pfp", "x"],
+      "tags": [
+        "avatar",
+        "pfp",
+        "x"
+      ],
       "altText": "The Chairman, head and shoulders, in a black pinstripe suit.",
-      "safeCrops": ["circular avatar crop"],
-      "allowedUse": ["X profile photo"],
+      "safeCrops": [
+        "circular avatar crop"
+      ],
+      "allowedUse": [
+        "X profile photo"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": null
     },
@@ -184,15 +344,26 @@
       "path": "assets/source/MYSE-Chairman-PFP-Telegram.png",
       "fallback": null,
       "source": "assets/source/MYSE-Chairman-PFP-Master.png",
-      "dimensions": { "width": 512, "height": 512 },
+      "dimensions": {
+        "width": 512,
+        "height": 512
+      },
       "aspectRatio": "1:1",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["avatar", "pfp", "telegram"],
+      "tags": [
+        "avatar",
+        "pfp",
+        "telegram"
+      ],
       "altText": "The Chairman, head and shoulders, in a black pinstripe suit.",
-      "safeCrops": ["circular avatar crop"],
-      "allowedUse": ["Telegram profile photo"],
+      "safeCrops": [
+        "circular avatar crop"
+      ],
+      "allowedUse": [
+        "Telegram profile photo"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": null
     },
@@ -202,15 +373,26 @@
       "path": "assets/source/MYSE-Chairman-X-Banner.png",
       "fallback": null,
       "source": null,
-      "dimensions": { "width": 1500, "height": 500 },
+      "dimensions": {
+        "width": 1500,
+        "height": 500
+      },
       "aspectRatio": "3:1",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["banner", "header", "x"],
+      "tags": [
+        "banner",
+        "header",
+        "x"
+      ],
       "altText": "MYSE header with the Chairman on the right.",
-      "safeCrops": ["lower-left avatar overlap must stay clear"],
-      "allowedUse": ["X profile header"],
+      "safeCrops": [
+        "lower-left avatar overlap must stay clear"
+      ],
+      "allowedUse": [
+        "X profile header"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": null
     },
@@ -220,15 +402,26 @@
       "path": "assets/source/MYSE-Chairman-Reveal-Post.png",
       "fallback": null,
       "source": null,
-      "dimensions": { "width": 1080, "height": 1080 },
+      "dimensions": {
+        "width": 1080,
+        "height": 1080
+      },
       "aspectRatio": "1:1",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["post", "reveal", "social"],
+      "tags": [
+        "post",
+        "reveal",
+        "social"
+      ],
       "altText": "The Chairman in a black pinstripe suit at an exchange desk beside a brass bell, with an ivory panel announcing that the Chairman is in.",
-      "safeCrops": ["centre 1080x1080"],
-      "allowedUse": ["social post"],
+      "safeCrops": [
+        "centre 1080x1080"
+      ],
+      "allowedUse": [
+        "social post"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": null
     },
@@ -238,15 +431,26 @@
       "path": "assets/source/Chairman-Source-Crop.png",
       "fallback": null,
       "source": null,
-      "dimensions": { "width": 491, "height": 572 },
+      "dimensions": {
+        "width": 491,
+        "height": 572
+      },
       "aspectRatio": "0.86:1",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["source", "crop", "board"],
+      "tags": [
+        "source",
+        "crop",
+        "board"
+      ],
       "altText": "The Chairman behind his office desk in a pinstripe suit, with a brass opening bell beside him.",
-      "safeCrops": ["as delivered"],
-      "allowedUse": ["social post"],
+      "safeCrops": [
+        "as delivered"
+      ],
+      "allowedUse": [
+        "social post"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Retains incidental text from the approved concept board."
     },
@@ -256,16 +460,29 @@
       "path": "assets/source/reply-bank/MYSE-Reply-01.png",
       "fallback": null,
       "source": "assets/source/Chairman-Source-Crop.png",
-      "dimensions": { "width": 1200, "height": 900 },
+      "dimensions": {
+        "width": 1200,
+        "height": 900
+      },
       "aspectRatio": "4:3",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["reply-bank", "x-reply", "caption-card", "chairman", "prelaunch"],
+      "tags": [
+        "reply-bank",
+        "x-reply",
+        "caption-card",
+        "chairman",
+        "prelaunch"
+      ],
       "altText": "Editorial card reading NOT YET. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
       "caption": "No CA yet. The Chairman’s first statement is pending. Only on Robinhood Chain.",
-      "safeCrops": ["as delivered, 1200x900"],
-      "allowedUse": ["x-reply"],
+      "safeCrops": [
+        "as delivered, 1200x900"
+      ],
+      "allowedUse": [
+        "x-reply"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Caption variant of one portrait: the twelve cards recompose assets/source/Chairman-Source-Crop.png under different headline and caption text. They are not twelve illustrations."
     },
@@ -275,16 +492,29 @@
       "path": "assets/source/reply-bank/MYSE-Reply-02.png",
       "fallback": null,
       "source": "assets/source/Chairman-Source-Crop.png",
-      "dimensions": { "width": 1200, "height": 900 },
+      "dimensions": {
+        "width": 1200,
+        "height": 900
+      },
       "aspectRatio": "4:3",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["reply-bank", "x-reply", "caption-card", "chairman", "prelaunch"],
+      "tags": [
+        "reply-bank",
+        "x-reply",
+        "caption-card",
+        "chairman",
+        "prelaunch"
+      ],
       "altText": "Editorial card reading CLAIM UNDER REVIEW. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
       "caption": "Filing received. The Chairman will review your claim of “best” at the next session.",
-      "safeCrops": ["as delivered, 1200x900"],
-      "allowedUse": ["x-reply"],
+      "safeCrops": [
+        "as delivered, 1200x900"
+      ],
+      "allowedUse": [
+        "x-reply"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Caption variant of one portrait: the twelve cards recompose assets/source/Chairman-Source-Crop.png under different headline and caption text. They are not twelve illustrations."
     },
@@ -294,16 +524,29 @@
       "path": "assets/source/reply-bank/MYSE-Reply-03.png",
       "fallback": null,
       "source": "assets/source/Chairman-Source-Crop.png",
-      "dimensions": { "width": 1200, "height": 900 },
+      "dimensions": {
+        "width": 1200,
+        "height": 900
+      },
       "aspectRatio": "4:3",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["reply-bank", "x-reply", "caption-card", "chairman", "prelaunch"],
+      "tags": [
+        "reply-bank",
+        "x-reply",
+        "caption-card",
+        "chairman",
+        "prelaunch"
+      ],
       "altText": "Editorial card reading BELL PENDING. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
       "caption": "the chairman has heard enough about rotation. someone rotate his chair.",
-      "safeCrops": ["as delivered, 1200x900"],
-      "allowedUse": ["x-reply"],
+      "safeCrops": [
+        "as delivered, 1200x900"
+      ],
+      "allowedUse": [
+        "x-reply"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Caption variant of one portrait: the twelve cards recompose assets/source/Chairman-Source-Crop.png under different headline and caption text. They are not twelve illustrations."
     },
@@ -313,16 +556,29 @@
       "path": "assets/source/reply-bank/MYSE-Reply-04.png",
       "fallback": null,
       "source": "assets/source/Chairman-Source-Crop.png",
-      "dimensions": { "width": 1200, "height": 900 },
+      "dimensions": {
+        "width": 1200,
+        "height": 900
+      },
       "aspectRatio": "4:3",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["reply-bank", "x-reply", "caption-card", "chairman", "prelaunch"],
+      "tags": [
+        "reply-bank",
+        "x-reply",
+        "caption-card",
+        "chairman",
+        "prelaunch"
+      ],
       "altText": "Editorial card reading STATEMENT PENDING. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
       "caption": "the chairman has prepared a statement. legal has prepared a longer statement.",
-      "safeCrops": ["as delivered, 1200x900"],
-      "allowedUse": ["x-reply"],
+      "safeCrops": [
+        "as delivered, 1200x900"
+      ],
+      "allowedUse": [
+        "x-reply"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Caption variant of one portrait: the twelve cards recompose assets/source/Chairman-Source-Crop.png under different headline and caption text. They are not twelve illustrations."
     },
@@ -332,16 +588,29 @@
       "path": "assets/source/reply-bank/MYSE-Reply-05.png",
       "fallback": null,
       "source": "assets/source/Chairman-Source-Crop.png",
-      "dimensions": { "width": 1200, "height": 900 },
+      "dimensions": {
+        "width": 1200,
+        "height": 900
+      },
       "aspectRatio": "4:3",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["reply-bank", "x-reply", "caption-card", "chairman", "prelaunch"],
+      "tags": [
+        "reply-bank",
+        "x-reply",
+        "caption-card",
+        "chairman",
+        "prelaunch"
+      ],
       "altText": "Editorial card reading MEETING ADJOURNED. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
       "caption": "productive session. we moved the binder three inches to the left.",
-      "safeCrops": ["as delivered, 1200x900"],
-      "allowedUse": ["x-reply"],
+      "safeCrops": [
+        "as delivered, 1200x900"
+      ],
+      "allowedUse": [
+        "x-reply"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Caption variant of one portrait: the twelve cards recompose assets/source/Chairman-Source-Crop.png under different headline and caption text. They are not twelve illustrations."
     },
@@ -351,16 +620,29 @@
       "path": "assets/source/reply-bank/MYSE-Reply-06.png",
       "fallback": null,
       "source": "assets/source/Chairman-Source-Crop.png",
-      "dimensions": { "width": 1200, "height": 900 },
+      "dimensions": {
+        "width": 1200,
+        "height": 900
+      },
       "aspectRatio": "4:3",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["reply-bank", "x-reply", "caption-card", "chairman", "prelaunch"],
+      "tags": [
+        "reply-bank",
+        "x-reply",
+        "caption-card",
+        "chairman",
+        "prelaunch"
+      ],
       "altText": "Editorial card reading ON THE RECORD. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
       "caption": "the chairman would like it noted that he was judging you before the chart opened.",
-      "safeCrops": ["as delivered, 1200x900"],
-      "allowedUse": ["x-reply"],
+      "safeCrops": [
+        "as delivered, 1200x900"
+      ],
+      "allowedUse": [
+        "x-reply"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Caption variant of one portrait: the twelve cards recompose assets/source/Chairman-Source-Crop.png under different headline and caption text. They are not twelve illustrations."
     },
@@ -370,16 +652,29 @@
       "path": "assets/source/reply-bank/MYSE-Reply-07.png",
       "fallback": null,
       "source": "assets/source/Chairman-Source-Crop.png",
-      "dimensions": { "width": 1200, "height": 900 },
+      "dimensions": {
+        "width": 1200,
+        "height": 900
+      },
       "aspectRatio": "4:3",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["reply-bank", "x-reply", "caption-card", "chairman", "prelaunch"],
+      "tags": [
+        "reply-bank",
+        "x-reply",
+        "caption-card",
+        "chairman",
+        "prelaunch"
+      ],
       "altText": "Editorial card reading BINDER INSPECTION. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
       "caption": "before we discuss your thesis, please explain why that card is unsleeved.",
-      "safeCrops": ["as delivered, 1200x900"],
-      "allowedUse": ["x-reply"],
+      "safeCrops": [
+        "as delivered, 1200x900"
+      ],
+      "allowedUse": [
+        "x-reply"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Caption variant of one portrait: the twelve cards recompose assets/source/Chairman-Source-Crop.png under different headline and caption text. They are not twelve illustrations."
     },
@@ -389,16 +684,29 @@
       "path": "assets/source/reply-bank/MYSE-Reply-08.png",
       "fallback": null,
       "source": "assets/source/Chairman-Source-Crop.png",
-      "dimensions": { "width": 1200, "height": 900 },
+      "dimensions": {
+        "width": 1200,
+        "height": 900
+      },
       "aspectRatio": "4:3",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["reply-bank", "x-reply", "caption-card", "chairman", "prelaunch"],
+      "tags": [
+        "reply-bank",
+        "x-reply",
+        "caption-card",
+        "chairman",
+        "prelaunch"
+      ],
       "altText": "Editorial card reading TAKE A SEAT. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
       "caption": "welcome to the trading floor. the chair is available. the chairman’s patience is not.",
-      "safeCrops": ["as delivered, 1200x900"],
-      "allowedUse": ["x-reply"],
+      "safeCrops": [
+        "as delivered, 1200x900"
+      ],
+      "allowedUse": [
+        "x-reply"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Caption variant of one portrait: the twelve cards recompose assets/source/Chairman-Source-Crop.png under different headline and caption text. They are not twelve illustrations."
     },
@@ -408,16 +716,29 @@
       "path": "assets/source/reply-bank/MYSE-Reply-09.png",
       "fallback": null,
       "source": "assets/source/Chairman-Source-Crop.png",
-      "dimensions": { "width": 1200, "height": 900 },
+      "dimensions": {
+        "width": 1200,
+        "height": 900
+      },
       "aspectRatio": "4:3",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["reply-bank", "x-reply", "caption-card", "chairman", "prelaunch"],
+      "tags": [
+        "reply-bank",
+        "x-reply",
+        "caption-card",
+        "chairman",
+        "prelaunch"
+      ],
       "altText": "Editorial card reading OPENING SOON. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
       "caption": "from the binder to the trading floor. coming soon. only on robinhood chain.",
-      "safeCrops": ["as delivered, 1200x900"],
-      "allowedUse": ["x-reply"],
+      "safeCrops": [
+        "as delivered, 1200x900"
+      ],
+      "allowedUse": [
+        "x-reply"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Caption variant of one portrait: the twelve cards recompose assets/source/Chairman-Source-Crop.png under different headline and caption text. They are not twelve illustrations."
     },
@@ -427,16 +748,29 @@
       "path": "assets/source/reply-bank/MYSE-Reply-10.png",
       "fallback": null,
       "source": "assets/source/Chairman-Source-Crop.png",
-      "dimensions": { "width": 1200, "height": 900 },
+      "dimensions": {
+        "width": 1200,
+        "height": 900
+      },
       "aspectRatio": "4:3",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["reply-bank", "x-reply", "caption-card", "chairman", "prelaunch"],
+      "tags": [
+        "reply-bank",
+        "x-reply",
+        "caption-card",
+        "chairman",
+        "prelaunch"
+      ],
       "altText": "Editorial card reading NOTED. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
       "caption": "your conviction has been entered into the minutes. your price target has been removed.",
-      "safeCrops": ["as delivered, 1200x900"],
-      "allowedUse": ["x-reply"],
+      "safeCrops": [
+        "as delivered, 1200x900"
+      ],
+      "allowedUse": [
+        "x-reply"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Caption variant of one portrait: the twelve cards recompose assets/source/Chairman-Source-Crop.png under different headline and caption text. They are not twelve illustrations."
     },
@@ -446,16 +780,29 @@
       "path": "assets/source/reply-bank/MYSE-Reply-11.png",
       "fallback": null,
       "source": "assets/source/Chairman-Source-Crop.png",
-      "dimensions": { "width": 1200, "height": 900 },
+      "dimensions": {
+        "width": 1200,
+        "height": 900
+      },
       "aspectRatio": "4:3",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["reply-bank", "x-reply", "caption-card", "chairman", "prelaunch"],
+      "tags": [
+        "reply-bank",
+        "x-reply",
+        "caption-card",
+        "chairman",
+        "prelaunch"
+      ],
       "altText": "Editorial card reading ORDER IN THE ROOM. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
       "caption": "one at a time. the chairman can only ignore so many opinions simultaneously.",
-      "safeCrops": ["as delivered, 1200x900"],
-      "allowedUse": ["x-reply"],
+      "safeCrops": [
+        "as delivered, 1200x900"
+      ],
+      "allowedUse": [
+        "x-reply"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Caption variant of one portrait: the twelve cards recompose assets/source/Chairman-Source-Crop.png under different headline and caption text. They are not twelve illustrations."
     },
@@ -465,16 +812,29 @@
       "path": "assets/source/reply-bank/MYSE-Reply-12.png",
       "fallback": null,
       "source": "assets/source/Chairman-Source-Crop.png",
-      "dimensions": { "width": 1200, "height": 900 },
+      "dimensions": {
+        "width": 1200,
+        "height": 900
+      },
       "aspectRatio": "4:3",
       "format": "png",
       "characterVariant": "chairman",
       "emotion": "unimpressed",
-      "tags": ["reply-bank", "x-reply", "caption-card", "chairman", "prelaunch"],
+      "tags": [
+        "reply-bank",
+        "x-reply",
+        "caption-card",
+        "chairman",
+        "prelaunch"
+      ],
       "altText": "Editorial card reading NO FURTHER QUESTIONS. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
       "caption": "the chairman will now take questions. he has not agreed to answer them.",
-      "safeCrops": ["as delivered, 1200x900"],
-      "allowedUse": ["x-reply"],
+      "safeCrops": [
+        "as delivered, 1200x900"
+      ],
+      "allowedUse": [
+        "x-reply"
+      ],
       "approvalStatus": "approved-by-founder",
       "referenceNotes": "Caption variant of one portrait: the twelve cards recompose assets/source/Chairman-Source-Crop.png under different headline and caption text. They are not twelve illustrations."
     }
