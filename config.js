@@ -1,0 +1,18 @@
+// Public configuration only. Do not put secrets here.
+window.MYSE_CONFIG = {
+  launchStatus: 'prelaunch',
+  verified: false, // Set true only after confirming published addresses and destinations.
+  networkName: 'Robinhood Chain',
+  chainId: 4663, // Wallet code derives hexadecimal 0x1237 from this value.
+  utilityMarketCapUSD: 5000000, // Owner-supplied milestone; no market-cap feed or automatic unlock.
+  contract: '',
+  poolAddress: '',
+  xHandle: '@MewYorkExchange',
+  siteURL: '', // Set the canonical HTTPS origin to emit absolute social-card metadata.
+  links: {
+    x: 'https://x.com/MewYorkExchange',
+    telegram: 'https://t.me/MewYorkExchange',
+    explorer: '', // Exact verified token explorer destination.
+    trade: '' // Exact verified trade destination; displayed as a record link, not a buy button.
+  }
+};
