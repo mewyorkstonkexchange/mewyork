@@ -6,9 +6,22 @@ export const siteConfig: SiteConfig = {
   brand: {
     shortName: 'MYSE',
     fullName: 'MEW YORK STOCK EXCHANGE',
+    headlineLead: 'Coming soon.',
+    headlineEmphasis: 'Only on Robinhood Chain.',
     tagline: 'From the binder to the trading floor.',
     supportLine: 'The next evolution of trading culture.',
-    statusLine: 'Coming soon. Only on Robinhood Chain.',
+  },
+
+  contractNotice: {
+    heading: 'Contract address',
+    body: 'The contract address will be published only on X, on @MewYorkExchange. Any address posted anywhere else is fake.',
+    ctaLabel: 'Follow @MewYorkExchange',
+  },
+
+  chairman: {
+    line: 'The Chairman will see you soon.',
+    imageAlt:
+      'The Chairman, a pink cat in a black pinstripe suit, resting his cheek on his paw at an exchange desk beside a brass bell.',
   },
 
   network: {
@@ -34,43 +47,41 @@ export const siteConfig: SiteConfig = {
   },
 
   links: {
-    x: null,
-    telegram: null,
+    x: 'https://x.com/MewYorkExchange',
+    telegram: 'https://t.me/MewYorkExchange',
     explorer: null,
     tradeVenue: null,
   },
 
   faq: [
     {
-      id: 'token',
-      question: 'Is there a token yet?',
-      answer:
-        'No. No contract address has been announced. Any address presented as MYSE today is not ours.',
-    },
-    {
-      id: 'chain',
-      question: 'Which network will it be on?',
-      answer: 'Robinhood Chain.',
-    },
-    {
-      id: 'what-it-is',
+      id: 'what-is-myse',
       question: 'What is MYSE?',
       answer:
-        'A community project. It is not an exchange, a broker, a fund, or a financial product, and it does not hold or redeem any asset.',
+        'Mew York Stock Exchange is a proposed memecoin community on Robinhood Chain, built around a fictional exchange and trading-and-collecting culture. It is not currently an operating trading venue.',
+    },
+    {
+      id: 'launched',
+      question: 'Has the token launched?',
+      answer:
+        'No. The contract address will be published only on X, on @MewYorkExchange. Any address posted anywhere else is fake.',
     },
     {
       id: 'wallet',
-      question: 'Why is there a wallet button before launch?',
+      question: 'What happens when I connect a wallet?',
       answer:
-        'To confirm your wallet can reach the network. Connecting reads your address only. It never requests a signature, an approval, or a transaction.',
+        'A wallet session only. No purchase, token approval, signature, whitelist entry or airdrop registration. Reading the site never requires a wallet.',
+    },
+    {
+      id: 'robinhood',
+      question: 'Is this an official Robinhood project?',
+      answer:
+        'No. MYSE is independent. “Only on Robinhood Chain” describes the intended network; it does not mean endorsement or a Robinhood brokerage listing.',
     },
   ],
 
   disclosures: [
-    'MYSE is a community project. It is not an exchange, a broker, a fund, or a financial product.',
-    'MYSE is not affiliated with, endorsed by, or connected to Robinhood, the New York Stock Exchange, Pokemon, zcat, or Doodles.',
-    'No token, contract address, supply, or launch date has been announced.',
-    'Nothing on this site is financial advice or an offer to sell anything.',
+    'Independent project. Not affiliated with or endorsed by Robinhood, Pokémon or NYSE. Artwork is conceptual and does not represent assets held.',
   ],
 
   analytics: {

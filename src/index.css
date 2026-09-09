@@ -1,25 +1,25 @@
-@import "tailwindcss";
-
-/* Provisional hex values for the named palette in the brief. Astra confirms the final
-   values; see docs/asset-requests.md (BRAND-TOKENS-01). */
-@theme {
-  --color-navy: #0a1030;
-  --color-navy-deep: #060a1f;
-  --color-ink: #05050a;
-  --color-ivory: #f5f1e6;
-  --color-ivory-dim: #b9b6ad;
-  --color-pink: #ff5fa2;
-  --color-green: #22e07a;
-  --color-purple: #7b5cd6;
-  /* Purple clears 3:1 against navy for borders but not 4.5:1 for text. */
-  --color-purple-soft: #9c86e0;
-
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
+/* Visual system ported from the creative director's static design (website/style.css):
+   palette, serif display type, monospace labels, section rhythm and modal treatment. */
 
 :root {
+  --ink: #080c12;
+  --navy: #0b1420;
+  --panel: #101a26;
+  --cream: #f4eddf;
+  --muted: #bcb9b2;
+  --green: #b6ff3b;
+  --pink: #e8adc6;
+  --line: #ffffff28;
+  --serif: Georgia, "Times New Roman", serif;
   color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -30,24 +30,693 @@ body,
 
 body {
   margin: 0;
-  background-color: var(--color-ink);
-  color: var(--color-ivory);
-  font-family: var(--font-sans);
+  background: var(--ink);
+  color: var(--cream);
+  font: 16px/1.6 Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-:focus-visible {
-  outline: 2px solid var(--color-green);
-  outline-offset: 2px;
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 5px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+em {
+  font-weight: 400;
+  font-style: normal;
+  color: var(--pink);
+}
+
+img {
+  max-width: 100%;
+}
+
+.skip {
+  position: absolute;
+  left: 20px;
+  top: -100px;
+  z-index: 20;
+  background: var(--cream);
+  color: var(--ink);
+  padding: 12px;
+}
+
+.skip:focus {
+  top: 10px;
+}
+
+.review-bar {
+  padding: 8px 4%;
+  font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 1px;
+  background: #d8e7b8;
+  color: #172016;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+header {
+  min-height: 112px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 18px 5%;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font: 700 50px/0.9 var(--serif);
+  letter-spacing: -3px;
+}
+
+.brand small {
+  display: block;
+  font: 9px/2.5 Arial, Helvetica, sans-serif;
+  letter-spacing: 2px;
+  margin-top: 5px;
+}
+
+.header-side {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ffffff40;
+  color: var(--cream);
+}
+
+.icon-link:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.icon-link svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.wallet,
+.secondary {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid #ffffff70;
+  padding: 13px 20px;
+}
+
+.wallet {
+  white-space: nowrap;
+}
+
+.primary {
+  background: var(--green);
+  border: 1px solid var(--green);
+  padding: 15px 22px;
+  color: #11180a;
+  font-weight: 700;
+}
+
+a.primary,
+a.secondary {
+  display: inline-flex;
+  align-items: center;
+}
+
+.primary span,
+.secondary span {
+  margin-left: 15px;
+}
+
+.hero {
+  position: relative;
+  min-height: 690px;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  padding: 70px 6% 90px;
+  overflow: hidden;
+}
+
+.hero-art {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  display: block;
+}
+
+.hero-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 72% center;
+}
+
+.hero:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, #080c12ed 0%, #080c12c2 31%, #080c1220 72%),
+    linear-gradient(0deg, #080c12 0%, transparent 25%);
+}
+
+.hero-portrait {
+  display: none;
+}
+
+.hero-copy {
+  max-width: 760px;
+}
+
+.lockup {
+  margin: 0 0 26px;
+}
+
+.lockup strong {
+  display: block;
+  font: 700 30px/1 var(--serif);
+  letter-spacing: -1px;
+}
+
+.lockup span {
+  display: block;
+  font: 10px/2.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 3px;
+  color: var(--green);
+}
+
+.eyebrow,
+.section-label {
+  font: 12px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 2px;
+  color: var(--green);
+  margin: 0 0 24px;
+}
+
+h1 {
+  font: clamp(42px, 5.6vw, 88px) / 1.03 var(--serif);
+  letter-spacing: -3px;
+  margin: 0 0 26px;
+}
+
+h2 {
+  font: clamp(32px, 3.4vw, 55px) / 1.14 var(--serif);
+  letter-spacing: -1.5px;
+  margin: 0 0 24px;
+}
+
+.support {
+  font: 22px/1.5 var(--serif);
+  color: var(--cream);
+  margin: 0 0 6px;
+}
+
+.support-alt {
+  font-size: 16px;
+  color: var(--muted);
+  margin: 0 0 30px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.small {
+  font-size: 12px;
+  color: var(--muted);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+section:not(.hero) {
+  scroll-margin-top: 25px;
+}
+
+.notice {
+  padding: 80px 7%;
+  border-top: 1px solid var(--line);
+  background: #0c141d;
+}
+
+.notice-panel {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 40px;
+  max-width: 900px;
+}
+
+.notice-panel h2 {
+  margin-bottom: 18px;
+}
+
+.notice-body {
+  font-size: 17px;
+  color: var(--cream);
+  max-width: 620px;
+  margin: 0 0 28px;
+}
+
+.chairman {
+  padding: 100px 7%;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 0.8fr 1fr;
+  align-items: center;
+  gap: 90px;
+}
+
+/* The delivered hero art is 16:9 with flat copy space on the left, so the section
+   crops to the Chairman rather than reprinting half a field of navy. */
+.portrait {
+  position: relative;
+  max-width: 440px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 100% center;
+}
+
+.chairman-line {
+  font-size: clamp(28px, 3vw, 46px);
+  margin: 0;
+  max-width: 520px;
+}
+
+.faq {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  padding: 100px 7%;
+  border-top: 1px solid var(--line);
+}
+
+.faq details {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.faq summary {
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.faq details p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+footer {
+  padding: 55px 6% 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+  border-top: 1px solid var(--line);
+}
+
+.footer-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+footer p {
+  font-size: 12px;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0;
+}
+
+.footer-side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-self: end;
+  align-items: flex-end;
+}
+
+dialog {
+  max-width: 520px;
+  width: calc(100% - 32px);
+  background: var(--navy);
+  color: var(--cream);
+  border: 1px solid var(--line);
+  padding: 38px;
+}
+
+dialog::backdrop {
+  background: #000000bb;
+  backdrop-filter: blur(5px);
+}
+
+dialog h2 {
+  font-size: 34px;
+  margin-bottom: 14px;
+}
+
+dialog p {
+  font-size: 15px;
+}
+
+.dialog-close {
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  border: 0;
+  background: none;
+  color: var(--cream);
+  font-size: 28px;
+  line-height: 1;
+  padding: 6px 10px;
+}
+
+.providers {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0 18px;
+}
+
+.providers button {
+  text-align: left;
+}
+
+.wallet-status {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  white-space: pre-line;
+}
+
+.wallet-account {
+  font: 15px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  overflow-wrap: anywhere;
+}
+
+.token-section {
+  padding: 80px 7%;
+  border-top: 1px solid var(--line);
+}
+
+.contract {
+  padding: 25px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.contract code {
+  display: block;
+  font-size: 17px;
+  margin-top: 15px;
+  overflow-wrap: anywhere;
+}
+
+.contract button {
+  background: var(--green);
+  border: 0;
+  padding: 12px 20px;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+.contract-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: var(--muted);
+  margin: -12px 0 0;
+}
+
+.contract-actions a {
+  color: var(--green);
+  border-bottom: 1px solid var(--green);
+}
+
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin: 30px 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.token-grid strong {
+  display: block;
+  color: var(--cream);
+  font-size: 17px;
+  font-weight: 400;
+  margin-top: 6px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: 640px;
+    padding: 60px 6% 80px;
+  }
+  .hero-art img {
+    object-position: 68% center;
+  }
+  .hero:after {
+    background:
+      linear-gradient(90deg, #080c12e6, #080c1277),
+      linear-gradient(0deg, #080c12, transparent 60%);
+  }
+  .notice {
+    padding: 70px 6%;
+  }
+  .chairman {
+    padding: 70px 6%;
+    gap: 40px;
+  }
+  .faq {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 70px 6%;
+  }
+  .token-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  header {
+    min-height: 90px;
+    padding: 16px 6%;
+    gap: 14px;
+  }
+  .brand {
+    font-size: 34px;
+    letter-spacing: -2px;
+  }
+  .brand small {
+    font-size: 7px;
+    letter-spacing: 1.5px;
+  }
+  .header-side {
+    gap: 10px;
+  }
+  .icons {
+    gap: 8px;
+  }
+  .icon-link {
+    width: 36px;
+    height: 36px;
+  }
+  .wallet {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  .hero {
+    display: block;
+    min-height: 0;
+    padding: 34px 6% 60px;
+  }
+  .hero-art,
+  .hero:after {
+    display: none;
+  }
+  .hero-portrait {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto 30px;
+    border: 1px solid var(--line);
+  }
+  .hero-portrait img {
+    display: block;
+    width: 100%;
+  }
+  .lockup strong {
+    font-size: 24px;
+  }
+  .lockup span {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+  h1 {
+    font-size: 46px;
+    letter-spacing: -1.8px;
+  }
+  .support {
+    font-size: 19px;
+  }
+  .support-alt {
+    font-size: 15px;
+  }
+  .actions {
+    gap: 10px;
+  }
+  .primary,
+  .secondary {
+    font-size: 13px;
+    padding: 13px 15px;
+  }
+  .notice,
+  .chairman,
+  .faq,
+  .token-section {
+    padding: 55px 6%;
+  }
+  /* The hero already carries the portrait on a phone; repeating it here adds nothing. */
+  .chairman {
+    display: block;
+  }
+  .chairman .portrait {
+    display: none;
+  }
+  .notice-panel {
+    padding: 26px 22px;
+  }
+  .notice-body {
+    font-size: 16px;
+  }
+  .portrait span {
+    bottom: 10px;
+    left: 10px;
+    font-size: 9px;
+    letter-spacing: 1.4px;
+    padding: 6px 10px;
+  }
+  footer {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 40px 6%;
+  }
+  .footer-side {
+    justify-self: start;
+    align-items: flex-start;
+  }
+  dialog {
+    padding: 28px 22px;
+  }
+  dialog h2 {
+    font-size: 28px;
+  }
+  .contract {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 20px;
+  }
+  .contract code {
+    font-size: 14px;
+  }
+  .token-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand {
+    font-size: 30px;
+  }
+  .brand small {
+    font-size: 6px;
+    letter-spacing: 1.2px;
+  }
+  .icon-link {
+    width: 32px;
+    height: 32px;
+  }
+  .icon-link svg {
+    width: 16px;
+    height: 16px;
+  }
+  .wallet {
+    padding: 9px 11px;
+    font-size: 11px;
+  }
+  .header-side {
+    gap: 8px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }

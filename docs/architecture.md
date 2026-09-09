@@ -2,35 +2,107 @@
 
 ## Stack
 
-Vite + React + TypeScript + Tailwind, built to static files. The site is a single page
-with a handful of config-driven sections, so a static bundle on GitHub Pages needs no
-server, no runtime secrets and no build-time API. React earns its place because the wallet
-libraries are React-first; TypeScript because the launch gate and the token config are the
-two places a mistake is expensive. Tailwind v4 carries the palette as CSS custom
-properties, so the colours live in one block in `src/index.css`.
+Vite + React + TypeScript, built to static files. The site is a single page with a handful
+of config-driven sections, so a static bundle on GitHub Pages needs no server, no runtime
+secrets and no build-time API. React earns its place because the wallet libraries are
+React-first; TypeScript because the launch gate and the token config are the two places a
+mistake is expensive.
 
-Wallet: `wagmi` + `viem`, injected connectors only, with EIP-6963 discovery so MetaMask,
-Rabby and Coinbase Wallet appear without a per-wallet SDK. The connection is session-only:
-address, chain, disconnect. No signing or transaction API is imported anywhere; a test
-(`src/test/walletSafety.test.ts`) fails the build if one appears.
+Styling is one hand-written stylesheet, `src/index.css`. It is a port of the creative
+director's static design: her palette, serif display type, monospace section labels,
+section rhythm and modal treatment, carried across as the same class names. There is no
+CSS framework, so nothing between her stylesheet and the rendered page can drift.
 
-Tests: vitest with jsdom. The three consequential paths — launch-mode gating, contract
-copying, config validation — are covered, plus the asset manifest shape.
+Wallet: `wagmi` + `viem`. Three connectors, all read-only:
+
+| Connector | Credential | Notes |
+| --- | --- | --- |
+| Injected + EIP-6963 discovery | none | MetaMask, Rabby and any other extension announce themselves |
+| Coinbase Wallet SDK | none | reaches the Coinbase mobile app and smart wallet without an extension |
+| WalletConnect | project id | loads only when `VITE_WALLETCONNECT_PROJECT_ID` is set |
+
+The connection is session-only: address, chain, network switch, disconnect. No signing or
+transaction API is imported anywhere; `src/test/walletSafety.test.ts` fails the build if
+one appears, and also pins the connector set.
+
+Tests: vitest with jsdom. The consequential paths — launch-mode gating, contract copying,
+config validation, the connector set and the no-injected-provider connect sheet — are
+covered, plus the asset manifest shape, the existence of every file it names and the 400 KB
+ceiling on anything the page loads.
 
 ## Layout
 
 ```
-src/site.config.ts        content, links, token, network, FAQ, disclosures
+src/site.config.ts        content, links, notice copy, FAQ, disclosure
 src/config/launch.ts      launch gate + dev-only live-preview gate
 src/config/validate.ts    config validation
 src/config/mock.ts        labelled mock data for the live preview
-src/wallet/               chain construction, wagmi config, wallet UI
+src/wallet/               chain construction, connector set, connect sheet
 src/components/           presentational pieces, all config-driven
-assets/manifest.json      asset contract with Astra
+src/index.css             the ported design system
+assets/manifest.json      asset contract: every delivered file, its source and its status
+assets/source/            delivered masters, not served
+public/                   web derivatives that ship with the page
 ```
 
 `CNAME` and `.nojekyll` stay at the repo root and are copied into `dist/` by a small Vite
 plugin, so either Pages mode (branch root, or an Actions-built artifact) works.
+
+## Page structure
+
+Header (wordmark, X and Telegram icon links, connect button) → hero → contract-address
+notice → Chairman → FAQ → footer. The hero carries the largest type on the page: the
+headline is "Coming soon. Only on Robinhood Chain."
+
+The contract-address notice is the anti-scam surface and sits directly under the hero. It
+is the only place the page discusses an address before launch, and it names one account.
+`validateSiteConfig` refuses a config where `links.x` is null, because the notice points at
+it.
+
+In live mode the notice is replaced by the token block. Live mode is gated: see
+`docs/launch-switch.md`.
+
+## WalletConnect
+
+The connector needs a free project id. The founder creates one:
+
+1. Sign in at `https://cloud.reown.com`.
+2. Create a project, type "AppKit", and copy its **Project ID**.
+3. Put it in `.env` as `VITE_WALLETCONNECT_PROJECT_ID=<id>` and rebuild.
+
+The id is public — it is compiled into the browser bundle by design — so it is not a
+secret, but it is still a per-project value and belongs in `.env`, not in source.
+
+Until it is set, `walletConnectConnector` returns null, the WalletConnect provider bundle is
+never imported, and the connect sheet renders the option disabled and labelled "Mobile
+wallets: available soon". The build does not break either way; the connector set is asserted
+in both states by `src/test/walletSafety.test.ts`.
+
+## Mobile
+
+On a phone with no injected provider, the connect sheet still opens, still offers Coinbase
+Wallet, and explains: "Open this page inside your wallet's browser, or use WalletConnect."
+Once the project id is set, WalletConnect handles the deep link into an installed wallet.
+`src/test/walletSheet.test.tsx` renders that state headlessly and asserts each part of it.
+
+## Assets
+
+Final Chairman artwork, signed off by the founder. Masters are in `assets/source/` and are
+not served. `public/` carries the web derivatives, produced by deterministic resize, crop
+and re-encode — no repainting.
+
+| Slot | Served file | Fallback | Source |
+| --- | --- | --- | --- |
+| Hero (wide) and Chairman section | `public/hero-chairman.webp` 1600x900 | `public/hero-chairman.png` 1280x720 | `MYSE-Chairman-Web-Hero.png` |
+| Hero on narrow viewports | `public/chairman-portrait.webp` 688x900 | `public/chairman-portrait.png` | crop of the same master at x=912 |
+| `og:image` / `twitter:image` | `public/share-chairman.png` 1200x630 | `public/share-chairman.webp` | `MYSE-Chairman-Social-Card.png` |
+| Favicon | `public/favicon.svg` | — | — |
+
+The narrow-viewport crop exists because the wide hero puts the Chairman on the right; a
+`cover` crop on a phone would drop him. The share image ships PNG-first because not every
+link-preview crawler accepts WebP.
+
+Every file the page loads is under 400 KB, asserted in `src/test/manifest.test.ts`.
 
 ## Robinhood Chain metadata
 
@@ -69,13 +141,12 @@ wrong. The published value is decimal 4663; `0x1237` is what the chain itself re
 | Item | State |
 | --- | --- |
 | Network metadata (chain id, RPC, explorer, native currency) | verified |
+| X and Telegram links | set — `x.com/MewYorkExchange`, `t.me/MewYorkExchange` |
+| Imagery | delivered and signed off |
 | Token name, symbol, contract address, pool address, supply, pairing asset | pending — null, founder decision |
 | Trade venue and explorer links | pending — null, founder decision |
-| X and Telegram links | pending — accounts not created |
-| WalletConnect / Reown connector | pending credential — needs a project id; adapter slot in `src/wallet/walletconnect.ts` |
+| WalletConnect connector | pending credential — needs a project id, see above |
 | Analytics provider | pending decision — adapter is a no-op until `VITE_ANALYTICS_*` are set |
-| All imagery | pending — placeholders only, see `docs/asset-requests.md` |
-| Palette hex values | provisional — named colours from the brief, exact values pending Astra |
 
 ## Analytics
 

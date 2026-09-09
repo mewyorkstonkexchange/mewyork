@@ -1,7 +1,6 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
 import { copyFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 
@@ -22,7 +21,7 @@ function pagesArtifactFiles() {
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), pagesArtifactFiles()],
+  plugins: [react(), pagesArtifactFiles()],
   build: {
     outDir: 'dist',
     sourcemap: false,

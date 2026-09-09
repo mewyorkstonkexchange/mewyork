@@ -1,18 +1,17 @@
+import { walletConnect } from 'wagmi/connectors'
 import type { CreateConnectorFn } from 'wagmi'
 import type { WalletConfig } from '../config/types'
 
+/** Shown in place of the WalletConnect option while no project id is configured. */
+export const WALLETCONNECT_UNAVAILABLE_LABEL = 'Mobile wallets: available soon'
+
 /**
- * Adapter slot for WalletConnect/Reown. Pending credential: it needs a project id issued
- * to the project account, and the `walletConnect` connector is deliberately not imported
- * until one exists. To wire it up:
- *   1. set VITE_WALLETCONNECT_PROJECT_ID (or wallet.walletConnectProjectId in site.config.ts)
- *   2. import { walletConnect } from 'wagmi/connectors'
- *   3. return walletConnect({ projectId, showQrModal: true }) below
- *   4. append the result to the connectors array in src/wallet/config.ts
+ * Returns null when no project id is set, which keeps the WalletConnect provider bundle
+ * from loading at all. The connect sheet then renders the option disabled rather than
+ * hiding it, so the gap is visible instead of silent.
  */
 export function walletConnectConnector(config: WalletConfig): CreateConnectorFn | null {
-  if (!config.walletConnectProjectId) return null
-  return null
+  const projectId = config.walletConnectProjectId?.trim()
+  if (!projectId) return null
+  return walletConnect({ projectId, showQrModal: true })
 }
-
-export const WALLETCONNECT_STATUS = 'pending credential'

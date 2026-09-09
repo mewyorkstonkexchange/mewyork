@@ -23,6 +23,14 @@ export function validateSiteConfig(config: SiteConfig): ValidationResult {
     if (typeof value !== 'string' || value.trim() === '') errors.push(`brand.${key} is empty`)
   }
 
+  for (const [key, value] of Object.entries(config.contractNotice)) {
+    if (typeof value !== 'string' || value.trim() === '') errors.push(`contractNotice.${key} is empty`)
+  }
+
+  for (const [key, value] of Object.entries(config.chairman)) {
+    if (typeof value !== 'string' || value.trim() === '') errors.push(`chairman.${key} is empty`)
+  }
+
   if (config.launchMode !== 'coming-soon' && config.launchMode !== 'live') {
     errors.push(`launchMode "${String(config.launchMode)}" is not a valid mode`)
   }
@@ -74,6 +82,9 @@ export function validateSiteConfig(config: SiteConfig): ValidationResult {
   for (const [key, url] of Object.entries(config.links)) {
     if (url !== null && !isHttps(url)) errors.push(`links.${key} must be an https URL`)
   }
+
+  // The notice tells readers to trust one account only; without that link it is unusable.
+  if (!config.links.x) errors.push('links.x is required: the contract-address notice points at it')
 
   const seen = new Set<string>()
   for (const entry of config.faq) {

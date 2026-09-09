@@ -44,9 +44,24 @@ export type LinksConfig = {
 export type BrandConfig = {
   shortName: string
   fullName: string
+  /** First half of the page headline. */
+  headlineLead: string
+  /** Second half of the page headline, carried in the accent colour. */
+  headlineEmphasis: string
   tagline: string
   supportLine: string
-  statusLine: string
+}
+
+/** The pre-launch anti-scam notice. The button uses links.x as its destination. */
+export type ContractNoticeConfig = {
+  heading: string
+  body: string
+  ctaLabel: string
+}
+
+export type ChairmanConfig = {
+  line: string
+  imageAlt: string
 }
 
 export type FaqEntry = {
@@ -63,13 +78,18 @@ export type AnalyticsConfig = {
 }
 
 export type WalletConfig = {
-  /** Reown/WalletConnect adapter is not wired: it needs a project id credential. */
+  /**
+   * WalletConnect/Reown project id. Free, not a secret, compiled into the public bundle.
+   * When it is null the WalletConnect option renders disabled instead of disappearing.
+   */
   walletConnectProjectId: string | null
 }
 
 export type SiteConfig = {
   launchMode: LaunchMode
   brand: BrandConfig
+  contractNotice: ContractNoticeConfig
+  chairman: ChairmanConfig
   network: NetworkConfig
   token: TokenConfig
   links: LinksConfig
