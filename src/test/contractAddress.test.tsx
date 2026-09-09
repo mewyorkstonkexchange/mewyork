@@ -3,6 +3,8 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { ContractAddress } from '../components/ContractAddress'
 
 const ADDRESS = '0xAbC1230000000000000000000000000000009fEd'
+const POOL = '0xDeF4560000000000000000000000000000001aBc'
+const PLACEHOLDER = 'Not yet published'
 
 let writeText: ReturnType<typeof vi.fn>
 
@@ -25,12 +27,12 @@ afterEach(() => {
 
 describe('ContractAddress', () => {
   it('shows the full address, never a truncation', () => {
-    render(<ContractAddress label="Contract address" address={ADDRESS} />)
+    render(<ContractAddress label="Contract address" address={ADDRESS} placeholder={PLACEHOLDER} />)
     expect(screen.getByText(ADDRESS)).toBeTruthy()
   })
 
   it('copies the full address and reports success', async () => {
-    render(<ContractAddress label="Contract address" address={ADDRESS} />)
+    render(<ContractAddress label="Contract address" address={ADDRESS} placeholder={PLACEHOLDER} />)
     fireEvent.click(screen.getByRole('button', { name: /copy contract address/i }))
 
     await waitFor(() => expect(screen.getByRole('status').textContent).toBe('Copied'))
@@ -38,9 +40,18 @@ describe('ContractAddress', () => {
     expect(writeText).toHaveBeenCalledWith(ADDRESS)
   })
 
+  it('copies the pool address from its own row', async () => {
+    render(<ContractAddress label="Pool address" address={POOL} placeholder={PLACEHOLDER} />)
+    expect(screen.getByText(POOL)).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: /copy pool address/i }))
+
+    await waitFor(() => expect(screen.getByRole('status').textContent).toBe('Copied'))
+    expect(writeText).toHaveBeenCalledWith(POOL)
+  })
+
   it('reports a failure when the clipboard rejects', async () => {
     setClipboard(() => Promise.reject(new Error('denied')))
-    render(<ContractAddress label="Contract address" address={ADDRESS} />)
+    render(<ContractAddress label="Contract address" address={ADDRESS} placeholder={PLACEHOLDER} />)
     fireEvent.click(screen.getByRole('button', { name: /copy contract address/i }))
 
     await waitFor(() =>
@@ -54,7 +65,7 @@ describe('ContractAddress', () => {
       configurable: true,
       writable: true,
     })
-    render(<ContractAddress label="Contract address" address={ADDRESS} />)
+    render(<ContractAddress label="Contract address" address={ADDRESS} placeholder={PLACEHOLDER} />)
     fireEvent.click(screen.getByRole('button', { name: /copy contract address/i }))
 
     await waitFor(() =>
@@ -67,6 +78,7 @@ describe('ContractAddress', () => {
       <ContractAddress
         label="Contract address"
         address={ADDRESS}
+        placeholder={PLACEHOLDER}
         explorerUrl="https://robinhoodchain.blockscout.com/"
       />,
     )
@@ -74,5 +86,25 @@ describe('ContractAddress', () => {
     expect(link.getAttribute('href')).toBe(
       `https://robinhoodchain.blockscout.com/address/${ADDRESS}`,
     )
+  })
+
+  it('shows the placeholder and disables copying while the address is unpublished', () => {
+    render(
+      <ContractAddress
+        label="Pool address"
+        address={null}
+        placeholder={PLACEHOLDER}
+        explorerUrl="https://robinhoodchain.blockscout.com/"
+      />,
+    )
+    expect(screen.getByText(PLACEHOLDER)).toBeTruthy()
+    expect(screen.queryByRole('link', { name: /view on explorer/i })).toBeNull()
+
+    const button = screen.getByRole('button', { name: /copy pool address/i }) as HTMLButtonElement
+    expect(button.disabled).toBe(true)
+
+    fireEvent.click(button)
+    expect(writeText).not.toHaveBeenCalled()
+    expect(screen.getByRole('status').textContent).toBe('')
   })
 })

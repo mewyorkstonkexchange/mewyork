@@ -293,28 +293,120 @@ section:not(.hero) {
   scroll-margin-top: 25px;
 }
 
-.notice {
+.thesis {
+  padding: 90px 7%;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+}
+
+.thesis-body p {
+  font: 19px/1.65 var(--serif);
+  color: var(--cream);
+  max-width: 620px;
+  margin: 0 0 22px;
+}
+
+.thesis-body p:last-child {
+  margin-bottom: 0;
+}
+
+.record {
   padding: 80px 7%;
   border-top: 1px solid var(--line);
   background: #0c141d;
 }
 
-.notice-panel {
+.record-panel {
   border: 1px solid var(--line);
   background: var(--panel);
   padding: 40px;
   max-width: 900px;
 }
 
-.notice-panel h2 {
+.record-panel h2 {
   margin-bottom: 18px;
 }
 
-.notice-body {
+.record-lead {
   font-size: 17px;
   color: var(--cream);
   max-width: 620px;
   margin: 0 0 28px;
+}
+
+.record-rows {
+  margin: 0 0 30px;
+  border-top: 1px solid var(--line);
+}
+
+.record-row {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 12px 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.record-row dt {
+  font: 12px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.record-row dd {
+  margin: 0;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+}
+
+.record-value {
+  font: 15px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.record-value.is-empty {
+  color: var(--muted);
+}
+
+.record-link {
+  color: var(--green);
+  border-bottom: 1px solid var(--green);
+}
+
+.record-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.record-actions button {
+  background: var(--green);
+  border: 0;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.record-actions button:disabled {
+  background: #ffffff1a;
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.record-actions a {
+  color: var(--green);
+  border-bottom: 1px solid var(--green);
 }
 
 .chairman {
@@ -464,47 +556,6 @@ dialog p {
   border-top: 1px solid var(--line);
 }
 
-.contract {
-  padding: 25px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  align-items: center;
-  margin: 30px 0;
-}
-
-.contract code {
-  display: block;
-  font-size: 17px;
-  margin-top: 15px;
-  overflow-wrap: anywhere;
-}
-
-.contract button {
-  background: var(--green);
-  border: 0;
-  padding: 12px 20px;
-  color: var(--ink);
-  flex-shrink: 0;
-}
-
-.contract-actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  font-size: 14px;
-  color: var(--muted);
-  margin: -12px 0 0;
-}
-
-.contract-actions a {
-  color: var(--green);
-  border-bottom: 1px solid var(--green);
-}
-
 .token-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -539,7 +590,12 @@ dialog p {
       linear-gradient(90deg, #080c12e6, #080c1277),
       linear-gradient(0deg, #080c12, transparent 60%);
   }
-  .notice {
+  .thesis {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 70px 6%;
+  }
+  .record {
     padding: 70px 6%;
   }
   .chairman {
@@ -629,7 +685,8 @@ dialog p {
     font-size: 13px;
     padding: 13px 15px;
   }
-  .notice,
+  .thesis,
+  .record,
   .chairman,
   .faq,
   .token-section {
@@ -642,11 +699,26 @@ dialog p {
   .chairman .portrait {
     display: none;
   }
-  .notice-panel {
+  .record-panel {
     padding: 26px 22px;
   }
-  .notice-body {
+  .record-lead {
     font-size: 16px;
+  }
+  .record-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 16px 0;
+  }
+  .record-row dd {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .record-value {
+    font-size: 13px;
+  }
+  .thesis-body p {
+    font-size: 17px;
   }
   .portrait span {
     bottom: 10px;
@@ -669,14 +741,6 @@ dialog p {
   }
   dialog h2 {
     font-size: 28px;
-  }
-  .contract {
-    align-items: stretch;
-    flex-direction: column;
-    padding: 20px;
-  }
-  .contract code {
-    font-size: 14px;
   }
   .token-grid {
     grid-template-columns: 1fr 1fr;

@@ -1,5 +1,4 @@
 import type { SiteConfig } from '../config/types'
-import { ContractAddress } from './ContractAddress'
 
 function Cell({ label, value }: { label: string; value: string | null }) {
   return (
@@ -16,13 +15,6 @@ export function TokenFacts({ config }: { config: SiteConfig }) {
     <section id="token" className="token-section" aria-labelledby="token-heading">
       <p className="section-label">THE OFFICIAL RECORD</p>
       <h2 id="token-heading">The bell has rung.</h2>
-      {token.contractAddress ? (
-        <ContractAddress
-          label="Contract address"
-          address={token.contractAddress}
-          explorerUrl={links.explorer}
-        />
-      ) : null}
       <div className="token-grid">
         <Cell label="Token" value={token.name} />
         <Cell label="Symbol" value={token.symbol} />
@@ -31,9 +23,6 @@ export function TokenFacts({ config }: { config: SiteConfig }) {
         <Cell label="Pairing" value={token.pairingAsset} />
         <Cell label="Venue" value={token.venue} />
       </div>
-      {token.poolAddress ? (
-        <ContractAddress label="Pool address" address={token.poolAddress} explorerUrl={links.explorer} />
-      ) : null}
       {links.tradeVenue ? (
         <div className="actions">
           <a className="primary" href={links.tradeVenue} target="_blank" rel="noopener noreferrer">

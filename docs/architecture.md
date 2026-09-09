@@ -33,7 +33,7 @@ ceiling on anything the page loads.
 ## Layout
 
 ```
-src/site.config.ts        content, links, notice copy, FAQ, disclosure
+src/site.config.ts        content, links, thesis and contract copy, FAQ, disclosure
 src/config/launch.ts      launch gate + dev-only live-preview gate
 src/config/validate.ts    config validation
 src/config/mock.ts        labelled mock data for the live preview
@@ -50,16 +50,22 @@ plugin, so either Pages mode (branch root, or an Actions-built artifact) works.
 
 ## Page structure
 
-Header (wordmark, X and Telegram icon links, connect button) → hero → contract-address
-notice → Chairman → FAQ → footer. The hero carries the largest type on the page: the
-headline is "Coming soon. Only on Robinhood Chain."
+Header (wordmark, X and Telegram icon links, connect button) → hero → thesis →
+contract-address record → Chairman → FAQ → footer. The hero carries the largest type on the
+page: the headline is "Coming soon. Only on Robinhood Chain."
 
-The contract-address notice is the anti-scam surface and sits directly under the hero. It
-is the only place the page discusses an address before launch, and it names one account.
-`validateSiteConfig` refuses a config where `links.x` is null, because the notice points at
+The thesis section sits directly under the hero and states the positioning and the market
+cap at which utility unlocks. The figure is rendered from `thesis.unlockMarketCapUsd`
+through `formatCompactUsd`, so the number has one source.
+
+The contract-address record is the anti-scam surface. It renders in both modes and always
+shows the same five rows: token contract, pool address, network, explorer and trade. A row
+whose config value is still null shows `Not yet published`, and an unpublished address row
+has its copy button disabled, so the page never prints a stand-in address. The record names
+one account, and `validateSiteConfig` refuses a config where `links.x` is null because of
 it.
 
-In live mode the notice is replaced by the token block. Live mode is gated: see
+In live mode the token block is added below the record. Live mode is gated: see
 `docs/launch-switch.md`.
 
 ## WalletConnect

@@ -12,10 +12,21 @@ export const siteConfig: SiteConfig = {
     supportLine: 'The next evolution of trading culture.',
   },
 
-  contractNotice: {
+  thesis: {
+    heading: 'The thesis',
+    unlockMarketCapUsd: 5_000_000,
+    body: [
+      'MYSE is designed as a utility coin, not a pure memecoin.',
+      'Utility unlocks at {marketCap} market cap. That is when the roadmap opens and the Chairman evolves.',
+      'Until then: coming soon. Only on Robinhood Chain.',
+    ],
+  },
+
+  contractSection: {
     heading: 'Contract address',
-    body: 'The contract address will be published only on X, on @MewYorkExchange. Any address posted anywhere else is fake.',
+    lead: 'Published only on X, on @MewYorkExchange. Any address posted anywhere else is fake.',
     ctaLabel: 'Follow @MewYorkExchange',
+    placeholder: 'Not yet published',
   },
 
   chairman: {
@@ -58,13 +69,13 @@ export const siteConfig: SiteConfig = {
       id: 'what-is-myse',
       question: 'What is MYSE?',
       answer:
-        'Mew York Stock Exchange is a proposed memecoin community on Robinhood Chain, built around a fictional exchange and trading-and-collecting culture. It is not currently an operating trading venue.',
+        'Mew York Stock Exchange is a utility coin on Robinhood Chain, presented as a fictional financial institution led by the Chairman. Utility unlocks at $5M market cap, when the roadmap opens.',
     },
     {
       id: 'launched',
       question: 'Has the token launched?',
       answer:
-        'No. The contract address will be published only on X, on @MewYorkExchange. Any address posted anywhere else is fake.',
+        'Not yet. The contract address will be published only on X, on @MewYorkExchange, and shown on this page at the same time.',
     },
     {
       id: 'wallet',

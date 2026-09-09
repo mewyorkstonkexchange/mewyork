@@ -52,11 +52,21 @@ export type BrandConfig = {
   supportLine: string
 }
 
-/** The pre-launch anti-scam notice. The button uses links.x as its destination. */
-export type ContractNoticeConfig = {
+export type ThesisConfig = {
   heading: string
-  body: string
+  /** Market cap at which utility unlocks, in whole US dollars. */
+  unlockMarketCapUsd: number
+  /** Paragraphs. `{marketCap}` is replaced with the formatted figure. */
+  body: string[]
+}
+
+/** The contract-address record. Its rows render in both modes; the button uses links.x. */
+export type ContractSectionConfig = {
+  heading: string
+  lead: string
   ctaLabel: string
+  /** Shown in place of any row value that is still null. */
+  placeholder: string
 }
 
 export type ChairmanConfig = {
@@ -88,7 +98,8 @@ export type WalletConfig = {
 export type SiteConfig = {
   launchMode: LaunchMode
   brand: BrandConfig
-  contractNotice: ContractNoticeConfig
+  thesis: ThesisConfig
+  contractSection: ContractSectionConfig
   chairman: ChairmanConfig
   network: NetworkConfig
   token: TokenConfig

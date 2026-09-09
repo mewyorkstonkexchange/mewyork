@@ -23,13 +23,23 @@ export function validateSiteConfig(config: SiteConfig): ValidationResult {
     if (typeof value !== 'string' || value.trim() === '') errors.push(`brand.${key} is empty`)
   }
 
-  for (const [key, value] of Object.entries(config.contractNotice)) {
-    if (typeof value !== 'string' || value.trim() === '') errors.push(`contractNotice.${key} is empty`)
+  for (const [key, value] of Object.entries(config.contractSection)) {
+    if (typeof value !== 'string' || value.trim() === '') errors.push(`contractSection.${key} is empty`)
   }
 
   for (const [key, value] of Object.entries(config.chairman)) {
     if (typeof value !== 'string' || value.trim() === '') errors.push(`chairman.${key} is empty`)
   }
+
+  const { thesis } = config
+  if (thesis.heading.trim() === '') errors.push('thesis.heading is empty')
+  if (!Number.isInteger(thesis.unlockMarketCapUsd) || thesis.unlockMarketCapUsd <= 0) {
+    errors.push('thesis.unlockMarketCapUsd must be a positive integer')
+  }
+  if (thesis.body.length === 0) errors.push('thesis.body must not be empty')
+  thesis.body.forEach((paragraph, index) => {
+    if (paragraph.trim() === '') errors.push(`thesis.body[${index}] is empty`)
+  })
 
   if (config.launchMode !== 'coming-soon' && config.launchMode !== 'live') {
     errors.push(`launchMode "${String(config.launchMode)}" is not a valid mode`)
@@ -83,8 +93,8 @@ export function validateSiteConfig(config: SiteConfig): ValidationResult {
     if (url !== null && !isHttps(url)) errors.push(`links.${key} must be an https URL`)
   }
 
-  // The notice tells readers to trust one account only; without that link it is unusable.
-  if (!config.links.x) errors.push('links.x is required: the contract-address notice points at it')
+  // The section tells readers to trust one account only; without that link it is unusable.
+  if (!config.links.x) errors.push('links.x is required: the contract-address section points at it')
 
   const seen = new Set<string>()
   for (const entry of config.faq) {
