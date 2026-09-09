@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Development placeholder favicon">
-  <rect width="64" height="64" rx="12" fill="#0a1030"/>
-  <rect x="4" y="4" width="56" height="56" rx="9" fill="none" stroke="#7b5cd6" stroke-width="3" stroke-dasharray="6 5"/>
-  <text x="32" y="40" font-family="ui-monospace, Menlo, monospace" font-size="20" font-weight="700" fill="#f5f1e6" text-anchor="middle">PH</text>
-</svg>
