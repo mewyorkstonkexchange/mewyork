@@ -1,0 +1,86 @@
+[
+  {
+    "id": "01",
+    "file": "MYSE-Reply-01.png",
+    "caption": "No CA yet. The Chairman’s first statement is pending. Only on Robinhood Chain.",
+    "alt_text": "Editorial card reading NOT YET. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
+    "when_to_use": "Use for prelaunch questions. The supplied MINHxDYNASTY post asks for a CA, so this does not meet its requested format; skip if the account excludes prelaunch replies."
+  },
+  {
+    "id": "02",
+    "file": "MYSE-Reply-02.png",
+    "caption": "Filing received. The Chairman will review your claim of “best” at the next session.",
+    "alt_text": "Editorial card reading CLAIM UNDER REVIEW. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
+    "when_to_use": "Use for a playful response to the supplied 0xBohr opinion; avoid suggesting a real review or affiliation."
+  },
+  {
+    "id": "03",
+    "file": "MYSE-Reply-03.png",
+    "caption": "the chairman has heard enough about rotation. someone rotate his chair.",
+    "alt_text": "Editorial card reading BELL PENDING. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
+    "when_to_use": "Use as an evergreen market-rotation joke. Verify any quoted market statistics separately; none are asserted here."
+  },
+  {
+    "id": "04",
+    "file": "MYSE-Reply-04.png",
+    "caption": "the chairman has prepared a statement. legal has prepared a longer statement.",
+    "alt_text": "Editorial card reading STATEMENT PENDING. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
+    "when_to_use": "Use for requests for updates; do not imply actual legal approval."
+  },
+  {
+    "id": "05",
+    "file": "MYSE-Reply-05.png",
+    "caption": "productive session. we moved the binder three inches to the left.",
+    "alt_text": "Editorial card reading MEETING ADJOURNED. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
+    "when_to_use": "Use after a long market debate or community discussion."
+  },
+  {
+    "id": "06",
+    "file": "MYSE-Reply-06.png",
+    "caption": "the chairman would like it noted that he was judging you before the chart opened.",
+    "alt_text": "Editorial card reading ON THE RECORD. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
+    "when_to_use": "Use for light chart-watching humor; skip replies to personal losses or distress."
+  },
+  {
+    "id": "07",
+    "file": "MYSE-Reply-07.png",
+    "caption": "before we discuss your thesis, please explain why that card is unsleeved.",
+    "alt_text": "Editorial card reading BINDER INSPECTION. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
+    "when_to_use": "Use for collector crossover conversations."
+  },
+  {
+    "id": "08",
+    "file": "MYSE-Reply-08.png",
+    "caption": "welcome to the trading floor. the chair is available. the chairman’s patience is not.",
+    "alt_text": "Editorial card reading TAKE A SEAT. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
+    "when_to_use": "Use for welcoming community introductions; no buying requirement."
+  },
+  {
+    "id": "09",
+    "file": "MYSE-Reply-09.png",
+    "caption": "from the binder to the trading floor. coming soon. only on robinhood chain.",
+    "alt_text": "Editorial card reading OPENING SOON. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
+    "when_to_use": "Use as an owned-account prelaunch post; no date or live token claim."
+  },
+  {
+    "id": "10",
+    "file": "MYSE-Reply-10.png",
+    "caption": "your conviction has been entered into the minutes. your price target has been removed.",
+    "alt_text": "Editorial card reading NOTED. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
+    "when_to_use": "Use for playful responses to unsupported price targets without endorsing them."
+  },
+  {
+    "id": "11",
+    "file": "MYSE-Reply-11.png",
+    "caption": "one at a time. the chairman can only ignore so many opinions simultaneously.",
+    "alt_text": "Editorial card reading ORDER IN THE ROOM. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
+    "when_to_use": "Use in a friendly busy discussion, not to pile onto harassment."
+  },
+  {
+    "id": "12",
+    "file": "MYSE-Reply-12.png",
+    "caption": "the chairman will now take questions. he has not agreed to answer them.",
+    "alt_text": "Editorial card reading NO FURTHER QUESTIONS. beside the approved portrait of the pink Chairman at his desk in a pinstripe suit.",
+    "when_to_use": "Use for a clearly humorous community update, not in place of factual launch answers."
+  }
+]
